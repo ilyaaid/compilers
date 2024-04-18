@@ -1,0 +1,45 @@
+Program = FuncD+
+
+FuncD = IDENT '(' FuncDParams ')' ':' Type '=' Expr ';'
+FuncDParams = (FuncDParam (',' FuncDParam)*)?
+FuncDParam = IDENT : Type
+
+Statement = IfStatement
+IfStatement = 'if' LogicExpr 'then' Expr 'else' Expr
+
+Expr = ArithExpr | LogicExpr | Statement | FuncCall | TupleLit | ListLit
+
+Exprs = Expr (',' Expr)*
+
+FuncCall = IDENT '(' Exprs? ')'
+
+Type = '[' Type ']' | '(' Type ',' Types ')' | 'int' | 'bool'
+Types = Type (',' Type)*
+
+=========== Lits ============
+
+NumberLit = NUMBER
+BoolLit = 'true' | 'false'
+TupleLit = '(' Expr ',' Exprs ')'
+ListLit = '[' Expr* ']'
+
+
+============= ArithExpr =============
+
+ArithExpr = T1 (('+'|'-') T1)*
+T1 = T2 (('*'|'/') T2)*
+T2 = '-'? T3
+T3 = '(' (Statement | ArithExpr) ')' | FuncCall | NumberLit
+
+============= LogicExpr =============
+
+LogicExpr = T1 ('or' T1)*
+T1 = T2 ('and' T2)*
+T2 = 'not'? T3
+T3 = '(' (Statement | LogicExpr) ')' | FuncCall | BoolLit
+
+
+===============TESTING=====================================
+
+Program = FuncD+
+FuncD = IDENT 

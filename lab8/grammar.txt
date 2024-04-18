@@ -1,0 +1,57 @@
+Rules -> Rule Rules | EPSILON
+Rule -> Axiom NTerm NTermRule
+Axiom -> * | EPSILON
+NTerm -> id
+NTermRule -> ( ArgOR ) NTermRuleTail
+NTermRuleTail -> ( ArgOR ) | EPSILON
+ArgOR -> SymArgOR ArgOR | EPSILON
+SymArgOR -> str | NTerm
+
+1) Rules -> Rule Rules
+2) Rules -> EPSILON
+3) Rule -> Axiom NTerm NTermRule 
+4) Axiom -> *
+5) Axiom -> EPSILON
+6) NTerm -> id
+7) NTermRule -> ( ArgOR ) NTermRuleTail
+8) NTermRuleTail -> ( ArgOR ) 
+9) NTermRuleTail -> EPSILON
+10) ArgOR -> SymArgOR ArgOR 
+11) ArgOR -> EPSILON
+12) SymArgOR -> str 
+13) SymArgOR -> NTerm
+
+
+====================================
+
+FIRST
+Rules: * ID nil
+Rule: * ID nil
+Axiom: * nil
+NTerm: ID
+NTermRule: (
+NTermRuleTail: ( nil
+ArgOR: STR ID nil
+SymArgOR: STR ID
+
+
+FOLLOW
+Rules: $
+Rule: * id $
+Axiom: ID
+NTerm: ( ) STR ID
+NTermRule: * id $
+NTermRuleTail: * id $
+ArgOR: )
+SymArgOR: STR ID )
+
+
+=====================================
+
+
+
+
+
+
+
+http://hackingoff.com/compilers/predict-first-follow-set

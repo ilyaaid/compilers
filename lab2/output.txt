@@ -1,0 +1,207 @@
+     0  *ast.File {
+     1  .  Doc: nil
+     2  .  Package: mydemo/mydemo.go:1:1
+     3  .  Name: *ast.Ident {
+     4  .  .  NamePos: mydemo/mydemo.go:1:9
+     5  .  .  Name: "main"
+     6  .  .  Obj: nil
+     7  .  }
+     8  .  Decls: []ast.Decl (len = 2) {
+     9  .  .  0: *ast.GenDecl {
+    10  .  .  .  Doc: nil
+    11  .  .  .  TokPos: mydemo/mydemo.go:3:1
+    12  .  .  .  Tok: import
+    13  .  .  .  Lparen: -
+    14  .  .  .  Specs: []ast.Spec (len = 1) {
+    15  .  .  .  .  0: *ast.ImportSpec {
+    16  .  .  .  .  .  Doc: nil
+    17  .  .  .  .  .  Name: nil
+    18  .  .  .  .  .  Path: *ast.BasicLit {
+    19  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:3:8
+    20  .  .  .  .  .  .  Kind: STRING
+    21  .  .  .  .  .  .  Value: "\"fmt\""
+    22  .  .  .  .  .  }
+    23  .  .  .  .  .  Comment: nil
+    24  .  .  .  .  .  EndPos: -
+    25  .  .  .  .  }
+    26  .  .  .  }
+    27  .  .  .  Rparen: -
+    28  .  .  }
+    29  .  .  1: *ast.FuncDecl {
+    30  .  .  .  Doc: nil
+    31  .  .  .  Recv: nil
+    32  .  .  .  Name: *ast.Ident {
+    33  .  .  .  .  NamePos: mydemo/mydemo.go:5:6
+    34  .  .  .  .  Name: "main"
+    35  .  .  .  .  Obj: *ast.Object {
+    36  .  .  .  .  .  Kind: func
+    37  .  .  .  .  .  Name: "main"
+    38  .  .  .  .  .  Decl: *(obj @ 29)
+    39  .  .  .  .  .  Data: nil
+    40  .  .  .  .  .  Type: nil
+    41  .  .  .  .  }
+    42  .  .  .  }
+    43  .  .  .  Type: *ast.FuncType {
+    44  .  .  .  .  Func: mydemo/mydemo.go:5:1
+    45  .  .  .  .  TypeParams: nil
+    46  .  .  .  .  Params: *ast.FieldList {
+    47  .  .  .  .  .  Opening: mydemo/mydemo.go:5:10
+    48  .  .  .  .  .  List: nil
+    49  .  .  .  .  .  Closing: mydemo/mydemo.go:5:11
+    50  .  .  .  .  }
+    51  .  .  .  .  Results: nil
+    52  .  .  .  }
+    53  .  .  .  Body: *ast.BlockStmt {
+    54  .  .  .  .  Lbrace: mydemo/mydemo.go:5:13
+    55  .  .  .  .  List: []ast.Stmt (len = 3) {
+    56  .  .  .  .  .  0: *ast.AssignStmt {
+    57  .  .  .  .  .  .  Lhs: []ast.Expr (len = 1) {
+    58  .  .  .  .  .  .  .  0: *ast.Ident {
+    59  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:6:2
+    60  .  .  .  .  .  .  .  .  Name: "a"
+    61  .  .  .  .  .  .  .  .  Obj: *ast.Object {
+    62  .  .  .  .  .  .  .  .  .  Kind: var
+    63  .  .  .  .  .  .  .  .  .  Name: "a"
+    64  .  .  .  .  .  .  .  .  .  Decl: *(obj @ 56)
+    65  .  .  .  .  .  .  .  .  .  Data: nil
+    66  .  .  .  .  .  .  .  .  .  Type: nil
+    67  .  .  .  .  .  .  .  .  }
+    68  .  .  .  .  .  .  .  }
+    69  .  .  .  .  .  .  }
+    70  .  .  .  .  .  .  TokPos: mydemo/mydemo.go:6:4
+    71  .  .  .  .  .  .  Tok: :=
+    72  .  .  .  .  .  .  Rhs: []ast.Expr (len = 1) {
+    73  .  .  .  .  .  .  .  0: *ast.BasicLit {
+    74  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:6:7
+    75  .  .  .  .  .  .  .  .  Kind: INT
+    76  .  .  .  .  .  .  .  .  Value: "32"
+    77  .  .  .  .  .  .  .  }
+    78  .  .  .  .  .  .  }
+    79  .  .  .  .  .  }
+    80  .  .  .  .  .  1: *ast.AssignStmt {
+    81  .  .  .  .  .  .  Lhs: []ast.Expr (len = 1) {
+    82  .  .  .  .  .  .  .  0: *ast.Ident {
+    83  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:7:2
+    84  .  .  .  .  .  .  .  .  Name: "b"
+    85  .  .  .  .  .  .  .  .  Obj: *ast.Object {
+    86  .  .  .  .  .  .  .  .  .  Kind: var
+    87  .  .  .  .  .  .  .  .  .  Name: "b"
+    88  .  .  .  .  .  .  .  .  .  Decl: *(obj @ 80)
+    89  .  .  .  .  .  .  .  .  .  Data: nil
+    90  .  .  .  .  .  .  .  .  .  Type: nil
+    91  .  .  .  .  .  .  .  .  }
+    92  .  .  .  .  .  .  .  }
+    93  .  .  .  .  .  .  }
+    94  .  .  .  .  .  .  TokPos: mydemo/mydemo.go:7:4
+    95  .  .  .  .  .  .  Tok: :=
+    96  .  .  .  .  .  .  Rhs: []ast.Expr (len = 1) {
+    97  .  .  .  .  .  .  .  0: *ast.BasicLit {
+    98  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:7:7
+    99  .  .  .  .  .  .  .  .  Kind: INT
+   100  .  .  .  .  .  .  .  .  Value: "2"
+   101  .  .  .  .  .  .  .  }
+   102  .  .  .  .  .  .  }
+   103  .  .  .  .  .  }
+   104  .  .  .  .  .  2: *ast.ExprStmt {
+   105  .  .  .  .  .  .  X: *ast.CallExpr {
+   106  .  .  .  .  .  .  .  Fun: *ast.SelectorExpr {
+   107  .  .  .  .  .  .  .  .  X: *ast.Ident {
+   108  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:2
+   109  .  .  .  .  .  .  .  .  .  Name: "fmt"
+   110  .  .  .  .  .  .  .  .  .  Obj: nil
+   111  .  .  .  .  .  .  .  .  }
+   112  .  .  .  .  .  .  .  .  Sel: *ast.Ident {
+   113  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:6
+   114  .  .  .  .  .  .  .  .  .  Name: "Println"
+   115  .  .  .  .  .  .  .  .  .  Obj: nil
+   116  .  .  .  .  .  .  .  .  }
+   117  .  .  .  .  .  .  .  }
+   118  .  .  .  .  .  .  .  Lparen: mydemo/mydemo.go:8:13
+   119  .  .  .  .  .  .  .  Args: []ast.Expr (len = 3) {
+   120  .  .  .  .  .  .  .  .  0: *ast.BinaryExpr {
+   121  .  .  .  .  .  .  .  .  .  X: *ast.Ident {
+   122  .  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:14
+   123  .  .  .  .  .  .  .  .  .  .  Name: "a"
+   124  .  .  .  .  .  .  .  .  .  .  Obj: *(obj @ 61)
+   125  .  .  .  .  .  .  .  .  .  }
+   126  .  .  .  .  .  .  .  .  .  OpPos: mydemo/mydemo.go:8:16
+   127  .  .  .  .  .  .  .  .  .  Op: *
+   128  .  .  .  .  .  .  .  .  .  Y: *ast.Ident {
+   129  .  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:18
+   130  .  .  .  .  .  .  .  .  .  .  Name: "b"
+   131  .  .  .  .  .  .  .  .  .  .  Obj: *(obj @ 85)
+   132  .  .  .  .  .  .  .  .  .  }
+   133  .  .  .  .  .  .  .  .  }
+   134  .  .  .  .  .  .  .  .  1: *ast.BinaryExpr {
+   135  .  .  .  .  .  .  .  .  .  X: *ast.Ident {
+   136  .  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:21
+   137  .  .  .  .  .  .  .  .  .  .  Name: "a"
+   138  .  .  .  .  .  .  .  .  .  .  Obj: *(obj @ 61)
+   139  .  .  .  .  .  .  .  .  .  }
+   140  .  .  .  .  .  .  .  .  .  OpPos: mydemo/mydemo.go:8:23
+   141  .  .  .  .  .  .  .  .  .  Op: <<
+   142  .  .  .  .  .  .  .  .  .  Y: *ast.BasicLit {
+   143  .  .  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:8:26
+   144  .  .  .  .  .  .  .  .  .  .  Kind: INT
+   145  .  .  .  .  .  .  .  .  .  .  Value: "4"
+   146  .  .  .  .  .  .  .  .  .  }
+   147  .  .  .  .  .  .  .  .  }
+   148  .  .  .  .  .  .  .  .  2: *ast.BinaryExpr {
+   149  .  .  .  .  .  .  .  .  .  X: *ast.BinaryExpr {
+   150  .  .  .  .  .  .  .  .  .  .  X: *ast.BinaryExpr {
+   151  .  .  .  .  .  .  .  .  .  .  .  X: *ast.Ident {
+   152  .  .  .  .  .  .  .  .  .  .  .  .  NamePos: mydemo/mydemo.go:8:29
+   153  .  .  .  .  .  .  .  .  .  .  .  .  Name: "b"
+   154  .  .  .  .  .  .  .  .  .  .  .  .  Obj: *(obj @ 85)
+   155  .  .  .  .  .  .  .  .  .  .  .  }
+   156  .  .  .  .  .  .  .  .  .  .  .  OpPos: mydemo/mydemo.go:8:31
+   157  .  .  .  .  .  .  .  .  .  .  .  Op: *
+   158  .  .  .  .  .  .  .  .  .  .  .  Y: *ast.BasicLit {
+   159  .  .  .  .  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:8:33
+   160  .  .  .  .  .  .  .  .  .  .  .  .  Kind: INT
+   161  .  .  .  .  .  .  .  .  .  .  .  .  Value: "32"
+   162  .  .  .  .  .  .  .  .  .  .  .  }
+   163  .  .  .  .  .  .  .  .  .  .  }
+   164  .  .  .  .  .  .  .  .  .  .  OpPos: mydemo/mydemo.go:8:36
+   165  .  .  .  .  .  .  .  .  .  .  Op: *
+   166  .  .  .  .  .  .  .  .  .  .  Y: *ast.BasicLit {
+   167  .  .  .  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:8:38
+   168  .  .  .  .  .  .  .  .  .  .  .  Kind: INT
+   169  .  .  .  .  .  .  .  .  .  .  .  Value: "3"
+   170  .  .  .  .  .  .  .  .  .  .  }
+   171  .  .  .  .  .  .  .  .  .  }
+   172  .  .  .  .  .  .  .  .  .  OpPos: mydemo/mydemo.go:8:40
+   173  .  .  .  .  .  .  .  .  .  Op: /
+   174  .  .  .  .  .  .  .  .  .  Y: *ast.BasicLit {
+   175  .  .  .  .  .  .  .  .  .  .  ValuePos: mydemo/mydemo.go:8:42
+   176  .  .  .  .  .  .  .  .  .  .  Kind: INT
+   177  .  .  .  .  .  .  .  .  .  .  Value: "4"
+   178  .  .  .  .  .  .  .  .  .  }
+   179  .  .  .  .  .  .  .  .  }
+   180  .  .  .  .  .  .  .  }
+   181  .  .  .  .  .  .  .  Ellipsis: -
+   182  .  .  .  .  .  .  .  Rparen: mydemo/mydemo.go:8:43
+   183  .  .  .  .  .  .  }
+   184  .  .  .  .  .  }
+   185  .  .  .  .  }
+   186  .  .  .  .  Rbrace: mydemo/mydemo.go:9:1
+   187  .  .  .  }
+   188  .  .  }
+   189  .  }
+   190  .  FileStart: mydemo/mydemo.go:1:1
+   191  .  FileEnd: mydemo/mydemo.go:9:4
+   192  .  Scope: *ast.Scope {
+   193  .  .  Outer: nil
+   194  .  .  Objects: map[string]*ast.Object (len = 1) {
+   195  .  .  .  "main": *(obj @ 35)
+   196  .  .  }
+   197  .  }
+   198  .  Imports: []*ast.ImportSpec (len = 1) {
+   199  .  .  0: *(obj @ 15)
+   200  .  }
+   201  .  Unresolved: []*ast.Ident (len = 1) {
+   202  .  .  0: *(obj @ 107)
+   203  .  }
+   204  .  Comments: nil
+   205  .  GoVersion: ""
+   206  }

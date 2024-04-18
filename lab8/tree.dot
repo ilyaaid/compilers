@@ -1,0 +1,220 @@
+digraph G {
+0 [label="Rules"]
+0->1
+1 [label="Rule"]
+1->2
+2 [label="NTerm"]
+2->3
+3 [label="IDENT"]
+1->4
+4 [label="NTermRule"]
+4->5
+5 [label="("]
+4->6
+6 [label="ArgOR"]
+6->7
+7 [label="SymArgOR"]
+7->8
+8 [label="STRING"]
+4->9
+9 [label=")"]
+4->10
+10 [label="NTermRuleTail"]
+10->11
+11 [label="("]
+10->12
+12 [label="ArgOR"]
+12->13
+13 [label="SymArgOR"]
+13->14
+14 [label="STRING"]
+12->15
+15 [label="ArgOR"]
+15->16
+16 [label="SymArgOR"]
+16->17
+17 [label="NTerm"]
+17->18
+18 [label="IDENT"]
+15->19
+19 [label="ArgOR"]
+19->20
+20 [label="SymArgOR"]
+20->21
+21 [label="STRING"]
+{ rank=same; 16 -> 19 [style=invis] }
+{ rank=same; 13 -> 15 [style=invis] }
+10->22
+22 [label=")"]
+{ rank=same; 11 -> 12 -> 22 [style=invis] }
+{ rank=same; 5 -> 6 -> 9 -> 10 [style=invis] }
+{ rank=same; 2 -> 4 [style=invis] }
+0->23
+23 [label="Rules"]
+23->24
+24 [label="Rule"]
+24->25
+25 [label="NTerm"]
+25->26
+26 [label="IDENT"]
+24->27
+27 [label="NTermRule"]
+27->28
+28 [label="("]
+27->29
+29 [label="ArgOR"]
+29->30
+30 [label="SymArgOR"]
+30->31
+31 [label="NTerm"]
+31->32
+32 [label="IDENT"]
+29->33
+33 [label="ArgOR"]
+33->34
+34 [label="SymArgOR"]
+34->35
+35 [label="NTerm"]
+35->36
+36 [label="IDENT"]
+{ rank=same; 30 -> 33 [style=invis] }
+27->37
+37 [label=")"]
+{ rank=same; 28 -> 29 -> 37 [style=invis] }
+{ rank=same; 25 -> 27 [style=invis] }
+23->38
+38 [label="Rules"]
+38->39
+39 [label="Rule"]
+39->40
+40 [label="NTerm"]
+40->41
+41 [label="IDENT"]
+39->42
+42 [label="NTermRule"]
+42->43
+43 [label="("]
+42->44
+44 [label="ArgOR"]
+44->45
+45 [label="SymArgOR"]
+45->46
+46 [label="STRING"]
+44->47
+47 [label="ArgOR"]
+47->48
+48 [label="SymArgOR"]
+48->49
+49 [label="NTerm"]
+49->50
+50 [label="IDENT"]
+47->51
+51 [label="ArgOR"]
+51->52
+52 [label="SymArgOR"]
+52->53
+53 [label="NTerm"]
+53->54
+54 [label="IDENT"]
+{ rank=same; 48 -> 51 [style=invis] }
+{ rank=same; 45 -> 47 [style=invis] }
+42->55
+55 [label=")"]
+42->56
+56 [label="NTermRuleTail"]
+56->57
+57 [label="("]
+56->58
+58 [label=")"]
+{ rank=same; 57 -> 58 [style=invis] }
+{ rank=same; 43 -> 44 -> 55 -> 56 [style=invis] }
+{ rank=same; 40 -> 42 [style=invis] }
+38->59
+59 [label="Rules"]
+59->60
+60 [label="Rule"]
+60->61
+61 [label="Axiom"]
+61->62
+62 [label="*"]
+60->63
+63 [label="NTerm"]
+63->64
+64 [label="IDENT"]
+60->65
+65 [label="NTermRule"]
+65->66
+66 [label="("]
+65->67
+67 [label="ArgOR"]
+67->68
+68 [label="SymArgOR"]
+68->69
+69 [label="NTerm"]
+69->70
+70 [label="IDENT"]
+67->71
+71 [label="ArgOR"]
+71->72
+72 [label="SymArgOR"]
+72->73
+73 [label="NTerm"]
+73->74
+74 [label="IDENT"]
+{ rank=same; 68 -> 71 [style=invis] }
+65->75
+75 [label=")"]
+{ rank=same; 66 -> 67 -> 75 [style=invis] }
+{ rank=same; 61 -> 63 -> 65 [style=invis] }
+59->76
+76 [label="Rules"]
+76->77
+77 [label="Rule"]
+77->78
+78 [label="NTerm"]
+78->79
+79 [label="IDENT"]
+77->80
+80 [label="NTermRule"]
+80->81
+81 [label="("]
+80->82
+82 [label="ArgOR"]
+82->83
+83 [label="SymArgOR"]
+83->84
+84 [label="STRING"]
+82->85
+85 [label="ArgOR"]
+85->86
+86 [label="SymArgOR"]
+86->87
+87 [label="NTerm"]
+87->88
+88 [label="IDENT"]
+85->89
+89 [label="ArgOR"]
+89->90
+90 [label="SymArgOR"]
+90->91
+91 [label="NTerm"]
+91->92
+92 [label="IDENT"]
+{ rank=same; 86 -> 89 [style=invis] }
+{ rank=same; 83 -> 85 [style=invis] }
+80->93
+93 [label=")"]
+80->94
+94 [label="NTermRuleTail"]
+94->95
+95 [label="("]
+94->96
+96 [label=")"]
+{ rank=same; 95 -> 96 [style=invis] }
+{ rank=same; 81 -> 82 -> 93 -> 94 [style=invis] }
+{ rank=same; 78 -> 80 [style=invis] }
+{ rank=same; 60 -> 76 [style=invis] }
+{ rank=same; 39 -> 59 [style=invis] }
+{ rank=same; 24 -> 38 [style=invis] }
+{ rank=same; 1 -> 23 [style=invis] }
+}

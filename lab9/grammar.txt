@@ -1,0 +1,49 @@
+
+Program := FuncD Program
+
+FuncD := IDENT FuncDParams : Type = Expr ;
+FuncDParams := (VarDefList)
+
+VarDef := IDENT : Type
+VarDefList := VarDef VarDefListTail | nil
+VarDefListTail := , VarDef VarDefListTail | nil
+
+Statement := IfStatement
+IfStatement := 'if' LogicExpr 'then' Expr 'else' Expr
+
+// Логические значения
+LogicExpr := LogicT1 LogicExprTail
+LogicExprTail := LogicAppOp LogicT1 LogicExprTail | nil
+
+LogicT1 := LogicT2 LogicT1Tail
+LogicT1Tail := LogicMulOp LogicT2 LogicT1Tail | nil
+LogicAddOp := 'or'
+LogicMulOp := 'and'
+LogicT2 := Expr
+
+Expr := Statement | ArithExpr | ListLit | TupleLit
+ExprList := Expr ExprListTail | nil
+ExprListTail := , Expr ExprListTail | nil
+
+FuncC := IDENT ( ExprList )
+
+ListLit := [ExprList]
+TupleLit := (Expr, Expr ExprListTail)
+
+// Арифметическое выражение 
+ArithExpr := T1 ArithExprTail
+ArithExprTail := AddOp T1 ArithExprTail | nil
+T1 := T2 T1Tail 
+T1Tail := MulOp T2 T1Tail | nil
+T2 := (BrBlock) | FuncC | NUMBER | IDENT
+BrBlock := ArithExpr | Statement
+AddOp := '+' | '-'
+MulOp := '*' | '/'
+
+// Тип переменных
+Type := ListType | TupleType | 'int' | 'bool'
+ListType := [Type]
+TupleType := (Type, Type TupleTypeList)
+TupleTypeList := , Type TupleTypeList | nil
+
+

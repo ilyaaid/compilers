@@ -1,0 +1,63 @@
+digraph finite_state_machine {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif", labelloc="b"]
+	rankdir=LR;
+	node [shape = doublecircle]; 1 2 3 4 5 6 7 8 9 10 11 12 14 15 16;
+	node [shape = circle];
+	
+	
+// 	ID
+	1 [xlabel="ID"];
+	0 -> 1 [label = "[a-ce-vx-zA-Z]"];
+	1 -> 1 [label = "[a-zA-Z0-9]"];
+	
+// 	DO
+    2 [xlabel="ID"];
+	3 [xlabel="DO"];
+	0 -> 2 [label = "d"];
+	2 -> 3 [label = "o"];
+	2 -> 1
+	3 -> 1
+	
+// 	WHILE
+    4 [xlabel="ID"];
+    5 [xlabel="ID"];
+    6 [xlabel="ID"];
+    7 [xlabel="ID"];
+    8 [xlabel="WHILE"];
+    0 -> 4 [label="w"];
+    4 -> 5 [label="h"];
+    5 -> 6 [label="i"];
+    6 -> 7 [label="l"];
+    7 -> 8 [label="e"];
+    4 -> 1;
+    5 -> 1;
+    6 -> 1;
+    7 -> 1;
+    8 -> 1;
+    
+//  NUM
+    9 [xlabel="NUM"];
+    0 -> 9 [label="[0-9]"];
+    9 -> 9 [label="[0-9]"];
+    
+//  BRS
+    10 [xlabel="L_BR"];
+    11 [xlabel="BRS"];
+    12 [xlabel="R_BR"];
+    0 -> 10 [label="<"];
+    10 -> 11 [label=">"];
+    0 -> 12 [label=">"];
+    
+//  STR, N_STR
+    14 [xlabel="N_STR"];
+    15 [xlabel="N_STR"];
+    16 [xlabel="STR"];
+    0 -> 13 [label="'"];
+    13 -> 13 [label="[^'\\r\\n]"]
+    13 -> 14 [label="\\n"];
+    13 -> 15 [label="\\r"];
+    13 -> 16 [label="'"];
+    15 -> 14 [label="\\n"];
+}

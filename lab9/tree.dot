@@ -1,0 +1,25 @@
+digraph G {
+0 [label="Program"]
+0->1
+1 [label="FuncD"]
+1->2
+2 [label="IDENT:zip"]
+1->3
+3 [label="and:and"]
+{ rank=same; 2 -> 3 [style=invis] }
+0->4
+4 [label="FuncD"]
+4->5
+5 [label="IDENT:hello"]
+4->6
+6 [label="and:and"]
+{ rank=same; 5 -> 6 [style=invis] }
+0->7
+7 [label="FuncD"]
+7->8
+8 [label="or:or"]
+7->9
+9 [label="and:and"]
+{ rank=same; 8 -> 9 [style=invis] }
+{ rank=same; 1 -> 4 -> 7 [style=invis] }
+}
