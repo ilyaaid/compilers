@@ -3,6 +3,9 @@
 #include <iostream>
 
 void Scanner::nextToken() {
+    if (cur_token.tag == TAG_END) {
+        return;
+    }
     std::shared_ptr<semantic_type> lval = std::make_shared<semantic_type>();
     std::shared_ptr<location_type> frag = std::make_shared<location_type>();
     DOMAIN_TAG tag = lex(lval, frag);

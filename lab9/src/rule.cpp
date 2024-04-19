@@ -1,6 +1,8 @@
 #include "rule.hpp"
 #include "parser.hpp"
 
+#include <sstream>
+
 //================== a ========
 
 std::vector<std::shared_ptr<Node>> TermRule::parse() {
@@ -8,23 +10,31 @@ std::vector<std::shared_ptr<Node>> TermRule::parse() {
         return {};
     }
     Parser& parser = Parser::getInstance();
-    if (parser.sc->cur_token.tag == tag) {
-        Token t = parser.sc->cur_token;
+    Token t = parser.sc->cur_token;
+    if (t.tag == tag) {
         std::cout << t << std::endl;
         parser.sc->nextToken();
         return { std::make_shared<LeafNode>(t) };
     }
-    throw std::runtime_error("Wrong tag!");
+    std::stringstream buffer;
+    buffer << "Wrong tag\n\tReceived: " << t << std::endl;
+    buffer << "\tExpected: " << Token::tag2string[tag] << std::endl;
+    buffer << t;
+    throw std::runtime_error(buffer.str());
 }
 
 std::set<DOMAIN_TAG> TermRule::find_first() {
     return { tag };
 }
 
-//================= X ======
+//================= X =======
 
 std::vector<std::shared_ptr<Node>> NTermRule::parse() {
-    auto children = Parser::rules.at(nterm)->parse();    
+    auto children = Parser::rules.at(nterm)->parse();
+    // TODO (убираю нетерминалы с одним ребенком и поднимаю ребенка наверх по дереву)
+    if (children.size() == 1) {
+        return {children[0]};
+    }
     auto node = std::make_shared<NTermNode>(nterm);
     node->children = children;
     return { node };
@@ -78,11 +88,31 @@ std::set<DOMAIN_TAG> AltRule::find_first() {
     for (size_t i = 0; i < rules.size(); ++i) {
         auto cur_first = rules[i]->find_first();
         std::set_union(first.begin(), first.end(),
-                cur_first.begin(), cur_first.end(),
-                std::inserter(first, first.begin()));
+            cur_first.begin(), cur_first.end(),
+            std::inserter(first, first.begin()));
     }
     return first;
 }
+
+//================== R* =====
+
+std::vector<std::shared_ptr<Node>> StarRule::parse() {
+    Parser& parser = Parser::getInstance();
+    auto first = rule->find_first();
+    std::vector<std::shared_ptr<Node>> children;
+    while (first.find(parser.sc->cur_token.tag) != first.end()) {
+        auto child = rule->parse();
+        children.insert(children.end(), child.begin(), child.end());
+    }
+    return children;
+}
+
+std::set<DOMAIN_TAG> StarRule::find_first() {
+    auto child_first = rule->find_first();
+    child_first.insert(TAG_EMPTY);
+    return child_first;
+}
+
 
 //================== R+ =====
 
@@ -100,3 +130,23 @@ std::vector<std::shared_ptr<Node>> PlusRule::parse() {
 std::set<DOMAIN_TAG> PlusRule::find_first() {
     return rule->find_first();
 }
+
+//================== R? =====
+
+std::vector<std::shared_ptr<Node>> OptRule::parse() {
+    Parser& parser = Parser::getInstance();
+    auto first = rule->find_first();
+    std::vector<std::shared_ptr<Node>> children;
+    if (first.find(parser.sc->cur_token.tag) != first.end()) {
+        auto child = rule->parse();
+        children.insert(children.end(), child.begin(), child.end());
+    }
+    return children;
+}
+
+std::set<DOMAIN_TAG> OptRule::find_first() {
+    auto child_first = rule->find_first();
+    child_first.insert(TAG_EMPTY);
+    return child_first;
+}
+

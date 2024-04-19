@@ -11,7 +11,7 @@
 
 struct ParseNode
 {
-    TagORNTerm tagnterm;
+    // TagORNTerm tagnterm;
     std::shared_ptr<NTermNode> node;
 };
 

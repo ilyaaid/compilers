@@ -6,21 +6,49 @@
 #include <memory>
 #include <unordered_map>
 
+// TODO
 enum NON_TERM : int
 {
     Program,
     FuncD,
+    FuncDParams,
+    FuncDParam,
+
+    Statement,
+    IfStatement,
+
+    Expr,
+    Exprs,
+    Var,
+
+    Type,
+    Types,
+
+    NumberLit,
+    BoolLit,
+    TupleLit,
+    ListLit,
+
+    ArithExpr,
+    ArithT1,
+    ArithT2,
+    ArithT3,
+
+    LogicExpr,
+    LogicT1,
+    LogicT2,
+    LogicT3,
 };
 
-struct TagORNTerm
-{
-    DOMAIN_TAG tag;
-    NON_TERM nterm;
-    bool is_tag;
+// struct TagORNTerm
+// {
+//     DOMAIN_TAG tag;
+//     NON_TERM nterm;
+//     bool is_tag;
 
-    TagORNTerm(DOMAIN_TAG tag);
-    TagORNTerm(NON_TERM nterm);
-};
+//     TagORNTerm(DOMAIN_TAG tag);
+//     TagORNTerm(NON_TERM nterm);
+// };
 
 struct Node
 {

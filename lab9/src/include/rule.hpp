@@ -60,12 +60,36 @@ private:
     std::vector<std::shared_ptr<Rule>> rules;
 };
 
+//=====================================
+
+class StarRule : public Rule {
+public:
+    StarRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
+    std::vector<std::shared_ptr<Node>> parse() override;
+    std::set<DOMAIN_TAG> find_first() override;
+
+private:
+    std::shared_ptr<Rule> rule;
+};
+
 
 //=====================================
 
 class PlusRule : public Rule {
 public:
     PlusRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
+    std::vector<std::shared_ptr<Node>> parse() override;
+    std::set<DOMAIN_TAG> find_first() override;
+
+private:
+    std::shared_ptr<Rule> rule;
+};
+
+//=====================================
+
+class OptRule : public Rule {
+public:
+    OptRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
     std::vector<std::shared_ptr<Node>> parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
