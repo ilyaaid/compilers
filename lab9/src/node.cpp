@@ -1,119 +1,151 @@
 #include "node.hpp"
 
-// TagORNTerm::TagORNTerm(DOMAIN_TAG tag)
-// {
-//     this->tag = tag;
-//     is_tag = true;
-// }
 
-// TagORNTerm::TagORNTerm(NON_TERM nterm)
-// {
-//     this->nterm = nterm;
-//     is_tag = false;
-// }
 
-NTermNode::NTermNode(NON_TERM nterm): nterm(nterm) {}
-
-//TODO
-const std::unordered_map<NON_TERM, std::string> NTermNode::nterm2string = {
-    {Program, "Program"},
-    {FuncD, "FuncD"},
-    {FuncDParams, "FuncDParams"},
-    {FuncDParam, "FuncDParam"},
-    {Statement, "Statement"},
-    {IfStatement, "IfStatement"},
-    {Expr, "Expr"},
-    {Exprs, "Exprs"},
-    {Var, "Var"},
-
-    {Type, "Type"},
-    {Types, "Types"},
-
-    {NumberLit, "NumberLit"},
-    {BoolLit, "BoolLit"},
-    {TupleLit, "TupleLit"},
-    {ListLit, "ListLit"},
-
-    {ArithExpr, "ArithExpr"},
-    {ArithT1, "ArithT1"},
-    {ArithT1, "ArithT2"},
-    {ArithT3, "ArithT3"},
-
-    {LogicExpr, "LogicExpr"},
-    {LogicT1, "LogicT1"},
-    {LogicT2, "LogicT2"},
-    {LogicT3, "LogicT3"},
-};
-
-LeafNode::LeafNode(const Token& token): token(token) {}
-
-//===============================  DOT
-
-void Node::printDOT(std::ostream& out) {
-    out << "digraph G {" << std::endl;
-    int n = 0;
-    printDOT_(out, n);
-    out << "}" << std::endl;
+void Term::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "Term(" << t.attr << ")" << std::endl;
 }
 
-void NTermNode::printDOT_(std::ostream& out, int& n)
+void Program::print(std::ostream& out, int s)
 {
-    out << n << " [label=\"" << nterm2string.at(nterm) << "\"]" << std::endl;
-    int parent = n;
-    std::vector<int> children_nums;
-    for (size_t i = 0; i < children.size(); ++i)
-    {
-        n++;
-        out << parent << "->" << n << std::endl;
-        children_nums.push_back(n);
-        children[i]->printDOT_(out, n);
+    std::string offset(s * 5, ' ');
+    out << offset << "Program(" << std::endl;
+    for (const auto& i : items) {
+        i->print(out, s + 1);
     }
-
-    if (children_nums.size() > 1)
-    {
-        out << "{ rank=same; ";
-        out << children_nums[0];
-        for (size_t i = 1; i < children_nums.size(); ++i)
-        {
-            out << " -> " << children_nums[i];
-        }
-        out << " [style=invis] }" << std::endl;
-    }
+    out << offset << ")" << std::endl;
 }
 
-void LeafNode::printDOT_(std::ostream& out, int& n)
+void FuncD::print(std::ostream& out, int s)
 {
-
-    out << n << " [label=\"";
-    if (token.tag2string[token.tag] == token.attr) {
-        out << token.attr;
-    }
-    else {
-        out << token.tag2string[token.tag] << ":" << token.attr;
-    }
-    out << "\"]" << std::endl;
+    std::string offset(s * 5, ' ');
+    out << offset << "FuncD(" << name << std::endl;
+    params->print(out, s + 1);
+    return_type->print(out, s + 1);
+    expr->print(out, s + 1);
+    out << offset << ")" << std::endl;
 }
 
-//===============================  print
-
-void NTermNode::print(int s)
+void FuncDParam::print(std::ostream& out, int s)
 {
-    for (int i = 0; i < s; ++i)
-    {
-        std::cout << "------";
-    }
-    std::cout << nterm2string.at(nterm) << std::endl;
-    for (size_t i = 0; i < children.size(); ++i)
-    {
-        children[i]->print(s + 1);
-    }
+    std::string offset(s * 5, ' ');
+    out << offset << "FuncDParam(" << name << std::endl;
+    type->print(out, s + 1);
+    out << offset << ")" << std::endl;
 }
 
-void LeafNode::print(int s)
+void FuncDParams::print(std::ostream& out, int s)
 {
-    for (int i = 0; i < s; ++i)
-    {
-        std::cout << "------";
+    std::string offset(s * 5, ' ');
+    out << offset << "FuncDParams(" << std::endl;
+    for (const auto& i : items) {
+        i->print(out, s + 1);
     }
-    std::cout << token << " " << std::endl;
+    out << offset << ")" << std::endl;
+}
+
+
+void IfStatement::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "IfStatement(" << std::endl;
+    cond->print(out, s + 1);
+    true_br->print(out, s + 1);
+    false_br->print(out, s + 1);
+    out << offset << ")" << std::endl;
+}
+
+void Var::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "Var(" << val->t.attr << ")" << std::endl;
+}
+
+void FuncCall::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "FuncCall(" << val->t.attr << std::endl;
+    for (auto& p : params) {
+        p->print(out, s + 1);
+    }
+    out << offset << ")" << std::endl;
+}
+
+
+void SimpleType::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "SimpleType(" << val << ")" << std::endl;
+}
+
+void ListType::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "ListType(" << std::endl;
+    type->print(out, s + 1);
+    out << offset << ")" << std::endl;
+}
+
+void TupleType::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "TupleType(" << std::endl;
+    for (auto& i : items) {
+        i->print(out, s + 1);
+    }
+    out << offset << ")" << std::endl;
+}
+
+void TupleLit::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "TupleLit(" << std::endl;
+    for (auto& i : exprs) {
+        i->print(out, s + 1);
+    }
+    out << offset << ")" << std::endl;
+}
+
+void ListLit::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "ListLit(" << std::endl;
+    for (auto& i : exprs) {
+        i->print(out, s + 1);
+    }
+    out << offset << ")" << std::endl;
+}
+
+void Num::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "Num(" << num << ")" << std::endl;
+}
+
+void BoolNum::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "Boolnum(" << (num ? "true" : "false") << ")" << std::endl;
+}
+
+
+void BinOp::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "BinOp(" << std::endl;
+    expr1->print(out, s + 1);
+    op->print(out, s + 1);
+    expr2->print(out, s + 1);
+    out << offset << ")" << std::endl;
+}
+
+void UnOp::print(std::ostream& out, int s)
+{
+    std::string offset(s * 5, ' ');
+    out << offset << "UnOp(" << std::endl;
+    op->print(out, s + 1);
+    expr->print(out, s + 1);
+    out << offset << ")" << std::endl;
 }

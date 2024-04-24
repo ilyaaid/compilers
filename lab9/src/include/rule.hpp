@@ -5,10 +5,53 @@
 
 #include <vector>
 #include <set>
+#include <functional>
+
+class Attrib {
+public:
+    virtual ~Attrib() {}
+};
+
+template <typename T>
+class AttribT : public Attrib {
+public:
+    AttribT(const T& value): value(value) {}
+
+    // T& set_value() {
+    //     return value;
+    // }
+
+    T get_value() const {
+        return value;
+    }
+
+private:
+    T value;
+};
+
+/*
+    Attrib *x = ...;
+
+    AttribT<int> *int_x = dynamic_cast<AttribT<int>>(x);  // dynamic_pointer_cast<shared_ptr<AttribT<int>>>(x)
+    if (int_x) {
+        int y = int_x->value();
+    } else {
+        printf("Это не int");
+    }
+*/
+
+class Rule;
+
+struct Alternative {
+    std::shared_ptr<Rule> rule;
+    std::function<NodesType(const NodesType&)> callback;
+};
+
 
 class Rule {
 public:
-    virtual std::vector<std::shared_ptr<Node>> parse() = 0;
+    virtual ~Rule() {}
+    virtual NodesType parse() = 0;
     virtual std::set<DOMAIN_TAG> find_first() = 0;
 };
 
@@ -17,7 +60,7 @@ public:
 class TermRule : public Rule {
 public:
     TermRule(DOMAIN_TAG tag): tag(tag) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:
@@ -28,12 +71,12 @@ private:
 
 class NTermRule : public Rule {
 public:
-    NTermRule(NON_TERM nterm): nterm(nterm) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NTermRule(NON_TERM::TYPE nterm): nterm(nterm) {}
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:
-    NON_TERM nterm;
+    NON_TERM::TYPE nterm;
 };
 
 //======================================
@@ -41,7 +84,7 @@ private:
 class ConcRule : public Rule {
 public:
     ConcRule(const std::vector<std::shared_ptr<Rule>>& rules): rules(rules) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:
@@ -50,22 +93,22 @@ private:
 
 //======================================
 
-class AltRule : public Rule {
-public:
-    AltRule(const std::vector<std::shared_ptr<Rule>>& rules): rules(rules) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
-    std::set<DOMAIN_TAG> find_first() override;
+// class AltRule : public Rule {
+// public:
+//     AltRule(const std::vector<std::shared_ptr<Rule>>& rules): rules(rules) {}
+//     NodesType parse() override;
+//     std::set<DOMAIN_TAG> find_first() override;
 
-private:
-    std::vector<std::shared_ptr<Rule>> rules;
-};
+// private:
+//     std::vector<std::shared_ptr<Rule>> rules;
+// };
 
 //=====================================
 
 class StarRule : public Rule {
 public:
     StarRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:
@@ -78,7 +121,7 @@ private:
 class PlusRule : public Rule {
 public:
     PlusRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:
@@ -90,7 +133,7 @@ private:
 class OptRule : public Rule {
 public:
     OptRule(const std::shared_ptr<Rule>& rule): rule(rule) {}
-    std::vector<std::shared_ptr<Node>> parse() override;
+    NodesType parse() override;
     std::set<DOMAIN_TAG> find_first() override;
 
 private:

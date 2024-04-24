@@ -29,10 +29,12 @@ Driver driver;
 %option noyywrap
 %option c++
 
-NUMBER [0-9]
+NUMBER [0-9]*
 BOOL_NUMBER true|false
 IDENT \_*[A-Za-z][\_A-Za-z0-9]*
 TYPE int|bool
+
+NON_IDENT [^a-zA-Z\_0-9]
 
 %x COMMENT
 
@@ -42,35 +44,35 @@ TYPE int|bool
    return DOMAIN_TAG::TAG_NUMBER;
 }
 
-{BOOL_NUMBER} {
+{BOOL_NUMBER}/{NON_IDENT} {
    return DOMAIN_TAG::TAG_BOOL_NUMBER;
 }
 
-if {
+if/{NON_IDENT} {
    return DOMAIN_TAG::TAG_IF;
 }
 
-then {
+then/{NON_IDENT} {
    return DOMAIN_TAG::TAG_THEN;
 }
 
-else {
+else/{NON_IDENT} {
    return DOMAIN_TAG::TAG_ELSE;
 }
 
-or {
+or/{NON_IDENT} {
    return DOMAIN_TAG::TAG_OR;
 }
 
-and {
+and/{NON_IDENT} {
    return DOMAIN_TAG::TAG_AND;
 }
 
-not {
+not/{NON_IDENT} {
    return DOMAIN_TAG::TAG_NOT;
 }
 
-{TYPE} {
+{TYPE}/{NON_IDENT} {
    return DOMAIN_TAG::TAG_TYPE;
 }
 

@@ -9,12 +9,6 @@
 #include <memory>
 #include <unordered_map>
 
-struct ParseNode
-{
-    // TagORNTerm tagnterm;
-    std::shared_ptr<NTermNode> node;
-};
-
 class Parser
 {
 
@@ -38,5 +32,5 @@ public:
 
 public:
     static std::shared_ptr<Scanner> scanner;
-    static const std::unordered_map<NON_TERM, std::shared_ptr<Rule>> rules;
+    static const std::unordered_map<NON_TERM::TYPE, std::vector<Alternative>> rules;
 };

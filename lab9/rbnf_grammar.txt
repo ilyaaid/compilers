@@ -4,42 +4,30 @@ FuncD = IDENT '(' FuncDParams? ')' ':' Type '=' Expr ';'
 FuncDParams = FuncDParam (',' FuncDParam)*
 FuncDParam = IDENT ':' Type
 
-Statement = IfStatement
-IfStatement = 'if' LogicExpr 'then' Expr 'else' Expr
-
-Expr = ArithExpr | LogicExpr | Statement | Var | TupleLit | ListLit
-
+Expr = IfStatement | ArithExpr
 Exprs = Expr (',' Expr)*
 
-// FuncCall = IDENT '(' Exprs? ')'
+IfStatement = 'if' LogicExpr 'then' Expr 'else' Expr
+
 Var = IDENT ('(' Exprs? ')')?
 
-Type = '[' Type ']' | '(' Type ',' Types ')' | TYPE
- // TYPE: ['int', 'bool']
-
-Types = Type (',' Type)*
+Type = '[' Type ']' | '(' Type ',' Type (',' Type)* ')' | 'int' | 'bool'
 
 =========== Lits ============
 
 NumberLit = NUMBER
 BoolLit = 'true' | 'false'
-TupleLit = '(' Expr ',' Exprs ')'
 ListLit = '[' Exprs? ']'
+Parens = '(' Expr (',' Exprs)? ')'
+
+============= ArithExpr and LogicExpr =============
+
+ArithExpr = T1 (T1Op T1)*
+T1Op = '+'|'-'|'or'
+T1 = T2 (T2Op T2)*
+T2Op = '*'|'/'|'and'
+T2 = T3Op? T3
+T3Op = '-'|'not'
+T3 = Parens | BoolLit | NumberLit | ListLit | Var
 
 
-============= ArithExpr =============
-
-ArithExpr = T1 (('+'|'-') T1)*
-T1 = T2 (('*'|'/') T2)*
-T2 = '-'? T3
-T3 = Var | NumberLit
-
-============= LogicExpr =============
-
-LogicExpr = T1 ('or' T1)*
-T1 = T2 ('and' T2)*
-T2 = 'not'? T3
-T3 = Var | BoolLit
-
-
-=================================

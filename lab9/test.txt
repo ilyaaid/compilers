@@ -12,7 +12,7 @@ bind(x : int, ys : [int]) : [(int, int)] =
 
 -- Конкатенация списков пар
 append(xs : [(int, int)], ys : [(int, int)]) : [(int, int)] =
-  if null(xs) then ys else cons(car(xs), append(cdr(xs), ys);
+  if null(xs) then ys else cons(car(xs), append(cdr(xs), ys));
 
 -- Расплющивание вложенного списка
 flat(xss : [[int]]) : [int] =

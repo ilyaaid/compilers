@@ -20,12 +20,14 @@ int main(const int argc, const char **argv)
 
    Parser::setParameters(sc);
    Parser& p = Parser::getInstance();
-   shared_ptr<Node> root = p.parse();
+   // shared_ptr<Node> root = p.parse();
 
-   // root->print(0);
+   auto root = p.parse();
 
-   ofstream out("/home/ilya/projects/bmstu/compilers/lab9/tree.dot");
-   root->printDOT(out);
+   ofstream out("/home/ilya/projects/bmstu/compilers/lab9/output.txt");
+   root->print(out, 0);
+
+   // root->printDOT(out);
    cout << endl;
    return 0;
 }

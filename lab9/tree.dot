@@ -1,1085 +1,120 @@
 digraph G {
-0 [label="Program"]
+0 [label="FuncD"]
 0->1
-1 [label="FuncD"]
-1->2
-2 [label="IDENT:zip"]
-1->3
-3 [label="("]
-1->4
-4 [label="FuncDParams"]
+1 [label="IDENT:polynom"]
+0->2
+2 [label="("]
+0->3
+3 [label="FuncDParams"]
+3->4
+4 [label="FuncDParam"]
 4->5
-5 [label="FuncDParam"]
-5->6
-6 [label="IDENT:xs"]
-5->7
-7 [label=":"]
-5->8
-8 [label="Type"]
-8->9
-9 [label="["]
-8->10
-10 [label="TYPE:int"]
-8->11
-11 [label="]"]
-{ rank=same; 9 -> 10 -> 11 [style=invis] }
-{ rank=same; 6 -> 7 -> 8 [style=invis] }
-4->12
-12 [label=","]
-4->13
-13 [label="FuncDParam"]
-13->14
-14 [label="IDENT:ys"]
-13->15
-15 [label=":"]
-13->16
-16 [label="Type"]
-16->17
-17 [label="["]
-16->18
+5 [label="IDENT:x"]
+4->6
+6 [label=":"]
+4->7
+7 [label="TYPE:int"]
+{ rank=same; 5 -> 6 -> 7 [style=invis] }
+3->8
+8 [label=","]
+3->9
+9 [label="FuncDParam"]
+9->10
+10 [label="IDENT:coefs"]
+9->11
+11 [label=":"]
+9->12
+12 [label="Type"]
+12->13
+13 [label="["]
+12->14
+14 [label="TYPE:int"]
+12->15
+15 [label="]"]
+{ rank=same; 13 -> 14 -> 15 [style=invis] }
+{ rank=same; 10 -> 11 -> 12 [style=invis] }
+{ rank=same; 4 -> 8 -> 9 [style=invis] }
+0->16
+16 [label=")"]
+0->17
+17 [label=":"]
+0->18
 18 [label="TYPE:int"]
-16->19
-19 [label="]"]
-{ rank=same; 17 -> 18 -> 19 [style=invis] }
-{ rank=same; 14 -> 15 -> 16 [style=invis] }
-{ rank=same; 5 -> 12 -> 13 [style=invis] }
-1->20
-20 [label=")"]
-1->21
-21 [label=":"]
-1->22
-22 [label="Type"]
+0->19
+19 [label="="]
+0->20
+20 [label="IfStatement"]
+20->21
+21 [label="if"]
+20->22
+22 [label="Var"]
 22->23
-23 [label="["]
+23 [label="IDENT:null"]
 22->24
-24 [label="Type"]
-24->25
-25 [label="("]
-24->26
-26 [label="TYPE:int"]
-24->27
-27 [label=","]
-24->28
-28 [label="TYPE:int"]
-24->29
-29 [label=")"]
-{ rank=same; 25 -> 26 -> 27 -> 28 -> 29 [style=invis] }
-22->30
-30 [label="]"]
-{ rank=same; 23 -> 24 -> 30 [style=invis] }
-1->31
-31 [label="="]
-1->32
-32 [label="IfStatement"]
+24 [label="("]
+22->25
+25 [label="IDENT:coefs"]
+22->26
+26 [label=")"]
+{ rank=same; 23 -> 24 -> 25 -> 26 [style=invis] }
+20->27
+27 [label="then"]
+20->28
+28 [label="NUMBER:0"]
+20->29
+29 [label="else"]
+20->30
+30 [label="ArithExpr"]
+30->31
+31 [label="ArithT1"]
+31->32
+32 [label="Var"]
 32->33
-33 [label="if"]
+33 [label="IDENT:polynom"]
 32->34
-34 [label="LogicExpr"]
-34->35
-35 [label="Var"]
+34 [label="("]
+32->35
+35 [label="Exprs"]
 35->36
-36 [label="IDENT:null"]
+36 [label="IDENT:x"]
 35->37
-37 [label="("]
+37 [label=","]
 35->38
-38 [label="IDENT:xs"]
-35->39
-39 [label=")"]
-{ rank=same; 36 -> 37 -> 38 -> 39 [style=invis] }
-34->40
-40 [label="or"]
-34->41
-41 [label="Var"]
-41->42
-42 [label="IDENT:null"]
-41->43
-43 [label="("]
-41->44
-44 [label="IDENT:ys"]
-41->45
-45 [label=")"]
-{ rank=same; 42 -> 43 -> 44 -> 45 [style=invis] }
-{ rank=same; 35 -> 40 -> 41 [style=invis] }
-32->46
-46 [label="then"]
-32->47
-47 [label="ListLit"]
+38 [label="Var"]
+38->39
+39 [label="IDENT:cdr"]
+38->40
+40 [label="("]
+38->41
+41 [label="IDENT:coefs"]
+38->42
+42 [label=")"]
+{ rank=same; 39 -> 40 -> 41 -> 42 [style=invis] }
+{ rank=same; 36 -> 37 -> 38 [style=invis] }
+32->43
+43 [label=")"]
+{ rank=same; 33 -> 34 -> 35 -> 43 [style=invis] }
+31->44
+44 [label="*"]
+31->45
+45 [label="IDENT:x"]
+{ rank=same; 32 -> 44 -> 45 [style=invis] }
+30->46
+46 [label="+"]
+30->47
+47 [label="Var"]
 47->48
-48 [label="["]
+48 [label="IDENT:car"]
 47->49
-49 [label="]"]
-{ rank=same; 48 -> 49 [style=invis] }
-32->50
-50 [label="else"]
-32->51
-51 [label="Var"]
-51->52
-52 [label="IDENT:cons"]
-51->53
-53 [label="("]
-51->54
-54 [label="Exprs"]
-54->55
-55 [label="TupleLit"]
-55->56
-56 [label="("]
-55->57
-57 [label="Var"]
-57->58
-58 [label="IDENT:car"]
-57->59
-59 [label="("]
-57->60
-60 [label="IDENT:xs"]
-57->61
-61 [label=")"]
-{ rank=same; 58 -> 59 -> 60 -> 61 [style=invis] }
-55->62
-62 [label=","]
-55->63
-63 [label="Var"]
-63->64
-64 [label="IDENT:car"]
-63->65
-65 [label="("]
-63->66
-66 [label="IDENT:ys"]
-63->67
-67 [label=")"]
-{ rank=same; 64 -> 65 -> 66 -> 67 [style=invis] }
-55->68
-68 [label=")"]
-{ rank=same; 56 -> 57 -> 62 -> 63 -> 68 [style=invis] }
-54->69
-69 [label=","]
-54->70
-70 [label="Var"]
-70->71
-71 [label="IDENT:zip"]
-70->72
-72 [label="("]
-70->73
-73 [label="Exprs"]
-73->74
-74 [label="Var"]
-74->75
-75 [label="IDENT:cdr"]
-74->76
-76 [label="("]
-74->77
-77 [label="IDENT:xs"]
-74->78
-78 [label=")"]
-{ rank=same; 75 -> 76 -> 77 -> 78 [style=invis] }
-73->79
-79 [label=","]
-73->80
-80 [label="Var"]
-80->81
-81 [label="IDENT:cdr"]
-80->82
-82 [label="("]
-80->83
-83 [label="IDENT:ys"]
-80->84
-84 [label=")"]
-{ rank=same; 81 -> 82 -> 83 -> 84 [style=invis] }
-{ rank=same; 74 -> 79 -> 80 [style=invis] }
-70->85
-85 [label=")"]
-{ rank=same; 71 -> 72 -> 73 -> 85 [style=invis] }
-{ rank=same; 55 -> 69 -> 70 [style=invis] }
-51->86
-86 [label=")"]
-{ rank=same; 52 -> 53 -> 54 -> 86 [style=invis] }
-{ rank=same; 33 -> 34 -> 46 -> 47 -> 50 -> 51 [style=invis] }
-1->87
-87 [label=";"]
-{ rank=same; 2 -> 3 -> 4 -> 20 -> 21 -> 22 -> 31 -> 32 -> 87 [style=invis] }
-0->88
-88 [label="FuncD"]
-88->89
-89 [label="IDENT:cart_prod"]
-88->90
-90 [label="("]
-88->91
-91 [label="FuncDParams"]
-91->92
-92 [label="FuncDParam"]
-92->93
-93 [label="IDENT:xs"]
-92->94
-94 [label=":"]
-92->95
-95 [label="Type"]
-95->96
-96 [label="["]
-95->97
-97 [label="TYPE:int"]
-95->98
-98 [label="]"]
-{ rank=same; 96 -> 97 -> 98 [style=invis] }
-{ rank=same; 93 -> 94 -> 95 [style=invis] }
-91->99
-99 [label=","]
-91->100
-100 [label="FuncDParam"]
-100->101
-101 [label="IDENT:ys"]
-100->102
-102 [label=":"]
-100->103
-103 [label="Type"]
-103->104
-104 [label="["]
-103->105
-105 [label="TYPE:int"]
-103->106
-106 [label="]"]
-{ rank=same; 104 -> 105 -> 106 [style=invis] }
-{ rank=same; 101 -> 102 -> 103 [style=invis] }
-{ rank=same; 92 -> 99 -> 100 [style=invis] }
-88->107
-107 [label=")"]
-88->108
-108 [label=":"]
-88->109
-109 [label="Type"]
-109->110
-110 [label="["]
-109->111
-111 [label="Type"]
-111->112
-112 [label="("]
-111->113
-113 [label="TYPE:int"]
-111->114
-114 [label=","]
-111->115
-115 [label="TYPE:int"]
-111->116
-116 [label=")"]
-{ rank=same; 112 -> 113 -> 114 -> 115 -> 116 [style=invis] }
-109->117
-117 [label="]"]
-{ rank=same; 110 -> 111 -> 117 [style=invis] }
-88->118
-118 [label="="]
-88->119
-119 [label="IfStatement"]
-119->120
-120 [label="if"]
-119->121
-121 [label="Var"]
-121->122
-122 [label="IDENT:null"]
-121->123
-123 [label="("]
-121->124
-124 [label="IDENT:xs"]
-121->125
-125 [label=")"]
-{ rank=same; 122 -> 123 -> 124 -> 125 [style=invis] }
-119->126
-126 [label="then"]
-119->127
-127 [label="ListLit"]
-127->128
-128 [label="["]
-127->129
-129 [label="]"]
-{ rank=same; 128 -> 129 [style=invis] }
-119->130
-130 [label="else"]
-119->131
-131 [label="Var"]
-131->132
-132 [label="IDENT:append"]
-131->133
-133 [label="("]
-131->134
-134 [label="Exprs"]
-134->135
-135 [label="Var"]
-135->136
-136 [label="IDENT:bind"]
-135->137
-137 [label="("]
-135->138
-138 [label="Exprs"]
-138->139
-139 [label="Var"]
-139->140
-140 [label="IDENT:car"]
-139->141
-141 [label="("]
-139->142
-142 [label="IDENT:xs"]
-139->143
-143 [label=")"]
-{ rank=same; 140 -> 141 -> 142 -> 143 [style=invis] }
-138->144
-144 [label=","]
-138->145
-145 [label="IDENT:ys"]
-{ rank=same; 139 -> 144 -> 145 [style=invis] }
-135->146
-146 [label=")"]
-{ rank=same; 136 -> 137 -> 138 -> 146 [style=invis] }
-134->147
-147 [label=","]
-134->148
-148 [label="Var"]
-148->149
-149 [label="IDENT:cart_prod"]
-148->150
-150 [label="("]
-148->151
-151 [label="Exprs"]
-151->152
-152 [label="Var"]
-152->153
-153 [label="IDENT:cdr"]
-152->154
-154 [label="("]
-152->155
-155 [label="IDENT:xs"]
-152->156
-156 [label=")"]
-{ rank=same; 153 -> 154 -> 155 -> 156 [style=invis] }
-151->157
-157 [label=","]
-151->158
-158 [label="IDENT:ys"]
-{ rank=same; 152 -> 157 -> 158 [style=invis] }
-148->159
-159 [label=")"]
-{ rank=same; 149 -> 150 -> 151 -> 159 [style=invis] }
-{ rank=same; 135 -> 147 -> 148 [style=invis] }
-131->160
-160 [label=")"]
-{ rank=same; 132 -> 133 -> 134 -> 160 [style=invis] }
-{ rank=same; 120 -> 121 -> 126 -> 127 -> 130 -> 131 [style=invis] }
-88->161
-161 [label=";"]
-{ rank=same; 89 -> 90 -> 91 -> 107 -> 108 -> 109 -> 118 -> 119 -> 161 [style=invis] }
-0->162
-162 [label="FuncD"]
-162->163
-163 [label="IDENT:bind"]
-162->164
-164 [label="("]
-162->165
-165 [label="FuncDParams"]
-165->166
-166 [label="FuncDParam"]
-166->167
-167 [label="IDENT:x"]
-166->168
-168 [label=":"]
-166->169
-169 [label="TYPE:int"]
-{ rank=same; 167 -> 168 -> 169 [style=invis] }
-165->170
-170 [label=","]
-165->171
-171 [label="FuncDParam"]
-171->172
-172 [label="IDENT:ys"]
-171->173
-173 [label=":"]
-171->174
-174 [label="Type"]
-174->175
-175 [label="["]
-174->176
-176 [label="TYPE:int"]
-174->177
-177 [label="]"]
-{ rank=same; 175 -> 176 -> 177 [style=invis] }
-{ rank=same; 172 -> 173 -> 174 [style=invis] }
-{ rank=same; 166 -> 170 -> 171 [style=invis] }
-162->178
-178 [label=")"]
-162->179
-179 [label=":"]
-162->180
-180 [label="Type"]
-180->181
-181 [label="["]
-180->182
-182 [label="Type"]
-182->183
-183 [label="("]
-182->184
-184 [label="TYPE:int"]
-182->185
-185 [label=","]
-182->186
-186 [label="TYPE:int"]
-182->187
-187 [label=")"]
-{ rank=same; 183 -> 184 -> 185 -> 186 -> 187 [style=invis] }
-180->188
-188 [label="]"]
-{ rank=same; 181 -> 182 -> 188 [style=invis] }
-162->189
-189 [label="="]
-162->190
-190 [label="IfStatement"]
-190->191
-191 [label="if"]
-190->192
-192 [label="Var"]
-192->193
-193 [label="IDENT:null"]
-192->194
-194 [label="("]
-192->195
-195 [label="IDENT:ys"]
-192->196
-196 [label=")"]
-{ rank=same; 193 -> 194 -> 195 -> 196 [style=invis] }
-190->197
-197 [label="then"]
-190->198
-198 [label="ListLit"]
-198->199
-199 [label="["]
-198->200
-200 [label="]"]
-{ rank=same; 199 -> 200 [style=invis] }
-190->201
-201 [label="else"]
-190->202
-202 [label="Var"]
-202->203
-203 [label="IDENT:cons"]
-202->204
-204 [label="("]
-202->205
-205 [label="Exprs"]
-205->206
-206 [label="TupleLit"]
-206->207
-207 [label="("]
-206->208
-208 [label="IDENT:x"]
-206->209
-209 [label=","]
-206->210
-210 [label="Var"]
-210->211
-211 [label="IDENT:car"]
-210->212
-212 [label="("]
-210->213
-213 [label="IDENT:ys"]
-210->214
-214 [label=")"]
-{ rank=same; 211 -> 212 -> 213 -> 214 [style=invis] }
-206->215
-215 [label=")"]
-{ rank=same; 207 -> 208 -> 209 -> 210 -> 215 [style=invis] }
-205->216
-216 [label=","]
-205->217
-217 [label="Var"]
-217->218
-218 [label="IDENT:bind"]
-217->219
-219 [label="("]
-217->220
-220 [label="Exprs"]
-220->221
-221 [label="IDENT:x"]
-220->222
-222 [label=","]
-220->223
-223 [label="Var"]
-223->224
-224 [label="IDENT:cdr"]
-223->225
-225 [label="("]
-223->226
-226 [label="IDENT:xs"]
-223->227
-227 [label=")"]
-{ rank=same; 224 -> 225 -> 226 -> 227 [style=invis] }
-{ rank=same; 221 -> 222 -> 223 [style=invis] }
-217->228
-228 [label=")"]
-{ rank=same; 218 -> 219 -> 220 -> 228 [style=invis] }
-{ rank=same; 206 -> 216 -> 217 [style=invis] }
-202->229
-229 [label=")"]
-{ rank=same; 203 -> 204 -> 205 -> 229 [style=invis] }
-{ rank=same; 191 -> 192 -> 197 -> 198 -> 201 -> 202 [style=invis] }
-162->230
-230 [label=";"]
-{ rank=same; 163 -> 164 -> 165 -> 178 -> 179 -> 180 -> 189 -> 190 -> 230 [style=invis] }
-0->231
-231 [label="FuncD"]
-231->232
-232 [label="IDENT:append"]
-231->233
-233 [label="("]
-231->234
-234 [label="FuncDParams"]
-234->235
-235 [label="FuncDParam"]
-235->236
-236 [label="IDENT:xs"]
-235->237
-237 [label=":"]
-235->238
-238 [label="Type"]
-238->239
-239 [label="["]
-238->240
-240 [label="Type"]
-240->241
-241 [label="("]
-240->242
-242 [label="TYPE:int"]
-240->243
-243 [label=","]
-240->244
-244 [label="TYPE:int"]
-240->245
-245 [label=")"]
-{ rank=same; 241 -> 242 -> 243 -> 244 -> 245 [style=invis] }
-238->246
-246 [label="]"]
-{ rank=same; 239 -> 240 -> 246 [style=invis] }
-{ rank=same; 236 -> 237 -> 238 [style=invis] }
-234->247
-247 [label=","]
-234->248
-248 [label="FuncDParam"]
-248->249
-249 [label="IDENT:ys"]
-248->250
-250 [label=":"]
-248->251
-251 [label="Type"]
-251->252
-252 [label="["]
-251->253
-253 [label="Type"]
-253->254
-254 [label="("]
-253->255
-255 [label="TYPE:int"]
-253->256
-256 [label=","]
-253->257
-257 [label="TYPE:int"]
-253->258
-258 [label=")"]
-{ rank=same; 254 -> 255 -> 256 -> 257 -> 258 [style=invis] }
-251->259
-259 [label="]"]
-{ rank=same; 252 -> 253 -> 259 [style=invis] }
-{ rank=same; 249 -> 250 -> 251 [style=invis] }
-{ rank=same; 235 -> 247 -> 248 [style=invis] }
-231->260
-260 [label=")"]
-231->261
-261 [label=":"]
-231->262
-262 [label="Type"]
-262->263
-263 [label="["]
-262->264
-264 [label="Type"]
-264->265
-265 [label="("]
-264->266
-266 [label="TYPE:int"]
-264->267
-267 [label=","]
-264->268
-268 [label="TYPE:int"]
-264->269
-269 [label=")"]
-{ rank=same; 265 -> 266 -> 267 -> 268 -> 269 [style=invis] }
-262->270
-270 [label="]"]
-{ rank=same; 263 -> 264 -> 270 [style=invis] }
-231->271
-271 [label="="]
-231->272
-272 [label="IfStatement"]
-272->273
-273 [label="if"]
-272->274
-274 [label="Var"]
-274->275
-275 [label="IDENT:null"]
-274->276
-276 [label="("]
-274->277
-277 [label="IDENT:xs"]
-274->278
-278 [label=")"]
-{ rank=same; 275 -> 276 -> 277 -> 278 [style=invis] }
-272->279
-279 [label="then"]
-272->280
-280 [label="IDENT:ys"]
-272->281
-281 [label="else"]
-272->282
-282 [label="Var"]
-282->283
-283 [label="IDENT:cons"]
-282->284
-284 [label="("]
-282->285
-285 [label="Exprs"]
-285->286
-286 [label="Var"]
-286->287
-287 [label="IDENT:car"]
-286->288
-288 [label="("]
-286->289
-289 [label="IDENT:xs"]
-286->290
-290 [label=")"]
-{ rank=same; 287 -> 288 -> 289 -> 290 [style=invis] }
-285->291
-291 [label=","]
-285->292
-292 [label="Var"]
-292->293
-293 [label="IDENT:append"]
-292->294
-294 [label="("]
-292->295
-295 [label="Exprs"]
-295->296
-296 [label="Var"]
-296->297
-297 [label="IDENT:cdr"]
-296->298
-298 [label="("]
-296->299
-299 [label="IDENT:xs"]
-296->300
-300 [label=")"]
-{ rank=same; 297 -> 298 -> 299 -> 300 [style=invis] }
-295->301
-301 [label=","]
-295->302
-302 [label="IDENT:ys"]
-{ rank=same; 296 -> 301 -> 302 [style=invis] }
-292->303
-303 [label=")"]
-{ rank=same; 293 -> 294 -> 295 -> 303 [style=invis] }
-{ rank=same; 286 -> 291 -> 292 [style=invis] }
-282->304
-304 [label=")"]
-{ rank=same; 283 -> 284 -> 285 -> 304 [style=invis] }
-{ rank=same; 273 -> 274 -> 279 -> 280 -> 281 -> 282 [style=invis] }
-231->305
-305 [label=";"]
-{ rank=same; 232 -> 233 -> 234 -> 260 -> 261 -> 262 -> 271 -> 272 -> 305 [style=invis] }
-0->306
-306 [label="FuncD"]
-306->307
-307 [label="IDENT:flat"]
-306->308
-308 [label="("]
-306->309
-309 [label="FuncDParam"]
-309->310
-310 [label="IDENT:xss"]
-309->311
-311 [label=":"]
-309->312
-312 [label="Type"]
-312->313
-313 [label="["]
-312->314
-314 [label="Type"]
-314->315
-315 [label="["]
-314->316
-316 [label="TYPE:int"]
-314->317
-317 [label="]"]
-{ rank=same; 315 -> 316 -> 317 [style=invis] }
-312->318
-318 [label="]"]
-{ rank=same; 313 -> 314 -> 318 [style=invis] }
-{ rank=same; 310 -> 311 -> 312 [style=invis] }
-306->319
-319 [label=")"]
-306->320
-320 [label=":"]
-306->321
-321 [label="Type"]
-321->322
-322 [label="["]
-321->323
-323 [label="TYPE:int"]
-321->324
-324 [label="]"]
-{ rank=same; 322 -> 323 -> 324 [style=invis] }
-306->325
-325 [label="="]
-306->326
-326 [label="IfStatement"]
-326->327
-327 [label="if"]
-326->328
-328 [label="Var"]
-328->329
-329 [label="IDENT:null"]
-328->330
-330 [label="("]
-328->331
-331 [label="IDENT:xss"]
-328->332
-332 [label=")"]
-{ rank=same; 329 -> 330 -> 331 -> 332 [style=invis] }
-326->333
-333 [label="then"]
-326->334
-334 [label="ListLit"]
-334->335
-335 [label="["]
-334->336
-336 [label="]"]
-{ rank=same; 335 -> 336 [style=invis] }
-326->337
-337 [label="else"]
-326->338
-338 [label="Var"]
-338->339
-339 [label="IDENT:append"]
-338->340
-340 [label="("]
-338->341
-341 [label="Exprs"]
-341->342
-342 [label="Var"]
-342->343
-343 [label="IDENT:car"]
-342->344
-344 [label="("]
-342->345
-345 [label="IDENT:xss"]
-342->346
-346 [label=")"]
-{ rank=same; 343 -> 344 -> 345 -> 346 [style=invis] }
-341->347
-347 [label=","]
-341->348
-348 [label="Var"]
-348->349
-349 [label="IDENT:flat"]
-348->350
-350 [label="("]
-348->351
-351 [label="Var"]
-351->352
-352 [label="IDENT:cdr"]
-351->353
-353 [label="("]
-351->354
-354 [label="IDENT:xss"]
-351->355
-355 [label=")"]
-{ rank=same; 352 -> 353 -> 354 -> 355 [style=invis] }
-348->356
-356 [label=")"]
-{ rank=same; 349 -> 350 -> 351 -> 356 [style=invis] }
-{ rank=same; 342 -> 347 -> 348 [style=invis] }
-338->357
-357 [label=")"]
-{ rank=same; 339 -> 340 -> 341 -> 357 [style=invis] }
-{ rank=same; 327 -> 328 -> 333 -> 334 -> 337 -> 338 [style=invis] }
-306->358
-358 [label=";"]
-{ rank=same; 307 -> 308 -> 309 -> 319 -> 320 -> 321 -> 325 -> 326 -> 358 [style=invis] }
-0->359
-359 [label="FuncD"]
-359->360
-360 [label="IDENT:sum"]
-359->361
-361 [label="("]
-359->362
-362 [label="FuncDParam"]
-362->363
-363 [label="IDENT:xs"]
-362->364
-364 [label=":"]
-362->365
-365 [label="Type"]
-365->366
-366 [label="["]
-365->367
-367 [label="TYPE:int"]
-365->368
-368 [label="]"]
-{ rank=same; 366 -> 367 -> 368 [style=invis] }
-{ rank=same; 363 -> 364 -> 365 [style=invis] }
-359->369
-369 [label=")"]
-359->370
-370 [label=":"]
-359->371
-371 [label="TYPE:int"]
-359->372
-372 [label="="]
-359->373
-373 [label="IfStatement"]
-373->374
-374 [label="if"]
-373->375
-375 [label="Var"]
-375->376
-376 [label="IDENT:null"]
-375->377
-377 [label="("]
-375->378
-378 [label="IDENT:xs"]
-375->379
-379 [label=")"]
-{ rank=same; 376 -> 377 -> 378 -> 379 [style=invis] }
-373->380
-380 [label="then"]
-373->381
-381 [label="NUMBER:0"]
-373->382
-382 [label="else"]
-373->383
-383 [label="ArithExpr"]
-383->384
-384 [label="Var"]
-384->385
-385 [label="IDENT:car"]
-384->386
-386 [label="("]
-384->387
-387 [label="IDENT:xs"]
-384->388
-388 [label=")"]
-{ rank=same; 385 -> 386 -> 387 -> 388 [style=invis] }
-383->389
-389 [label="+"]
-383->390
-390 [label="Var"]
-390->391
-391 [label="IDENT:sum"]
-390->392
-392 [label="("]
-390->393
-393 [label="Var"]
-393->394
-394 [label="IDENT:cdr"]
-393->395
-395 [label="("]
-393->396
-396 [label="IDENT:xs"]
-393->397
-397 [label=")"]
-{ rank=same; 394 -> 395 -> 396 -> 397 [style=invis] }
-390->398
-398 [label=")"]
-{ rank=same; 391 -> 392 -> 393 -> 398 [style=invis] }
-{ rank=same; 384 -> 389 -> 390 [style=invis] }
-{ rank=same; 374 -> 375 -> 380 -> 381 -> 382 -> 383 [style=invis] }
-359->399
-399 [label=";"]
-{ rank=same; 360 -> 361 -> 362 -> 369 -> 370 -> 371 -> 372 -> 373 -> 399 [style=invis] }
-0->400
-400 [label="FuncD"]
-400->401
-401 [label="IDENT:polynom"]
-400->402
-402 [label="("]
-400->403
-403 [label="FuncDParams"]
-403->404
-404 [label="FuncDParam"]
-404->405
-405 [label="IDENT:x"]
-404->406
-406 [label=":"]
-404->407
-407 [label="TYPE:int"]
-{ rank=same; 405 -> 406 -> 407 [style=invis] }
-403->408
-408 [label=","]
-403->409
-409 [label="FuncDParam"]
-409->410
-410 [label="IDENT:coefs"]
-409->411
-411 [label=":"]
-409->412
-412 [label="Type"]
-412->413
-413 [label="["]
-412->414
-414 [label="TYPE:int"]
-412->415
-415 [label="]"]
-{ rank=same; 413 -> 414 -> 415 [style=invis] }
-{ rank=same; 410 -> 411 -> 412 [style=invis] }
-{ rank=same; 404 -> 408 -> 409 [style=invis] }
-400->416
-416 [label=")"]
-400->417
-417 [label=":"]
-400->418
-418 [label="TYPE:int"]
-400->419
-419 [label="="]
-400->420
-420 [label="IfStatement"]
-420->421
-421 [label="if"]
-420->422
-422 [label="Var"]
-422->423
-423 [label="IDENT:null"]
-422->424
-424 [label="("]
-422->425
-425 [label="IDENT:coefs"]
-422->426
-426 [label=")"]
-{ rank=same; 423 -> 424 -> 425 -> 426 [style=invis] }
-420->427
-427 [label="then"]
-420->428
-428 [label="NUMBER:0"]
-420->429
-429 [label="else"]
-420->430
-430 [label="ArithExpr"]
-430->431
-431 [label="ArithT1"]
-431->432
-432 [label="Var"]
-432->433
-433 [label="IDENT:polynom"]
-432->434
-434 [label="("]
-432->435
-435 [label="Exprs"]
-435->436
-436 [label="IDENT:x"]
-435->437
-437 [label=","]
-435->438
-438 [label="Var"]
-438->439
-439 [label="IDENT:cdr"]
-438->440
-440 [label="("]
-438->441
-441 [label="IDENT:coefs"]
-438->442
-442 [label=")"]
-{ rank=same; 439 -> 440 -> 441 -> 442 [style=invis] }
-{ rank=same; 436 -> 437 -> 438 [style=invis] }
-432->443
-443 [label=")"]
-{ rank=same; 433 -> 434 -> 435 -> 443 [style=invis] }
-431->444
-444 [label="*"]
-431->445
-445 [label="IDENT:x"]
-{ rank=same; 432 -> 444 -> 445 [style=invis] }
-430->446
-446 [label="+"]
-430->447
-447 [label="Var"]
-447->448
-448 [label="IDENT:car"]
-447->449
-449 [label="("]
-447->450
-450 [label="IDENT:coefs"]
-447->451
-451 [label=")"]
-{ rank=same; 448 -> 449 -> 450 -> 451 [style=invis] }
-{ rank=same; 431 -> 446 -> 447 [style=invis] }
-{ rank=same; 421 -> 422 -> 427 -> 428 -> 429 -> 430 [style=invis] }
-400->452
-452 [label=";"]
-{ rank=same; 401 -> 402 -> 403 -> 416 -> 417 -> 418 -> 419 -> 420 -> 452 [style=invis] }
-0->453
-453 [label="FuncD"]
-453->454
-454 [label="IDENT:polynom1111"]
-453->455
-455 [label="("]
-453->456
-456 [label="FuncDParam"]
-456->457
-457 [label="IDENT:x"]
-456->458
-458 [label=":"]
-456->459
-459 [label="TYPE:int"]
-{ rank=same; 457 -> 458 -> 459 [style=invis] }
-453->460
-460 [label=")"]
-453->461
-461 [label=":"]
-453->462
-462 [label="TYPE:int"]
-453->463
-463 [label="="]
-453->464
-464 [label="Var"]
-464->465
-465 [label="IDENT:polynom"]
-464->466
-466 [label="("]
-464->467
-467 [label="Exprs"]
-467->468
-468 [label="IDENT:x"]
-467->469
-469 [label=","]
-467->470
-470 [label="ListLit"]
-470->471
-471 [label="["]
-470->472
-472 [label="Exprs"]
-472->473
-473 [label="NUMBER:1"]
-472->474
-474 [label=","]
-472->475
-475 [label="NUMBER:1"]
-472->476
-476 [label=","]
-472->477
-477 [label="NUMBER:1"]
-472->478
-478 [label=","]
-472->479
-479 [label="NUMBER:1"]
-{ rank=same; 473 -> 474 -> 475 -> 476 -> 477 -> 478 -> 479 [style=invis] }
-470->480
-480 [label="]"]
-{ rank=same; 471 -> 472 -> 480 [style=invis] }
-{ rank=same; 468 -> 469 -> 470 [style=invis] }
-464->481
-481 [label=")"]
-{ rank=same; 465 -> 466 -> 467 -> 481 [style=invis] }
-453->482
-482 [label=";"]
-{ rank=same; 454 -> 455 -> 456 -> 460 -> 461 -> 462 -> 463 -> 464 -> 482 [style=invis] }
-{ rank=same; 1 -> 88 -> 162 -> 231 -> 306 -> 359 -> 400 -> 453 [style=invis] }
+49 [label="("]
+47->50
+50 [label="IDENT:coefs"]
+47->51
+51 [label=")"]
+{ rank=same; 48 -> 49 -> 50 -> 51 [style=invis] }
+{ rank=same; 31 -> 46 -> 47 [style=invis] }
+{ rank=same; 21 -> 22 -> 27 -> 28 -> 29 -> 30 [style=invis] }
+0->52
+52 [label=";"]
+{ rank=same; 1 -> 2 -> 3 -> 16 -> 17 -> 18 -> 19 -> 20 -> 52 [style=invis] }
 }
