@@ -7,39 +7,6 @@
 #include <set>
 #include <functional>
 
-class Attrib {
-public:
-    virtual ~Attrib() {}
-};
-
-template <typename T>
-class AttribT : public Attrib {
-public:
-    AttribT(const T& value): value(value) {}
-
-    // T& set_value() {
-    //     return value;
-    // }
-
-    T get_value() const {
-        return value;
-    }
-
-private:
-    T value;
-};
-
-/*
-    Attrib *x = ...;
-
-    AttribT<int> *int_x = dynamic_cast<AttribT<int>>(x);  // dynamic_pointer_cast<shared_ptr<AttribT<int>>>(x)
-    if (int_x) {
-        int y = int_x->value();
-    } else {
-        printf("Это не int");
-    }
-*/
-
 class Rule;
 
 struct Alternative {
