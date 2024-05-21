@@ -5,7 +5,6 @@
 #include <memory>
 
 #include "scanner.hpp"
-#include "token.hpp"
 
 /* Implementation of yyFlexScanner */ 
 #undef  YY_DECL
@@ -16,7 +15,7 @@
 
 Driver driver;
 
-#define YY_USER_ACTION \ 
+#define YY_USER_ACTION \
 { \
    driver.common(lval, lloc, yytext); \
 }
@@ -37,8 +36,9 @@ IDENT [A-Z][A-Za-z]*\'*
 %%
 
 {IDENT} {
-   lval->tag = DOMAIN_TAG::TAG_IDENT;
-   return lval->tag;
+   std::replace(lval->begin(), lval->end(), '\'', '_');
+   return 'i';
+   // return DOMAIN_TAG::TAG_IDENT;
 }
 
 \/\* {
@@ -52,13 +52,9 @@ IDENT [A-Z][A-Za-z]*\'*
 
 <COMMENT>\*\/ {
    BEGIN(INITIAL);
-   // lval->tag = DOMAIN_TAG::TAG_COMMENT;
-   // return lval->tag;
 }
 
 <COMMENT><<EOF>> {
-   std::cout << "error in comment!" << std::endl;
-   // lval->tag = DOMAIN_TAG::TAG_END;
    return driver.end(lval);
 }
 
@@ -69,16 +65,16 @@ IDENT [A-Z][A-Za-z]*\'*
 
 <STRING>\" {
    BEGIN(0);
-   lval->tag = DOMAIN_TAG::TAG_STRING;
-   return lval->tag;
+   lval->erase(lval->begin());
+   lval->erase(lval->begin() + lval->length() - 1);
+   return 's';
+   // return DOMAIN_TAG::TAG_STRING;
 }
 
 <STRING>\n |
 
 <STRING><<EOF>> {
    throw std::runtime_error("error in token STRING:\n\treceived:EOF\n\texpected:\"");
-   // lval->tag = DOMAIN_TAG::TAG_END;
-   // return lval->tag;
 }
 
 <STRING>. {
@@ -86,29 +82,25 @@ IDENT [A-Z][A-Za-z]*\'*
 }
 
 \( {
-   lval->tag = DOMAIN_TAG::TAG_LPAREN;
-   return lval->tag;
+   return '(';
+   // return DOMAIN_TAG::TAG_LPAREN;
 }
 
 \) {
-   lval->tag = DOMAIN_TAG::TAG_RPAREN;
-   return lval->tag;
+   return ')';
+   // return DOMAIN_TAG::TAG_RPAREN;
 }
 
 \* {
-   lval->tag = DOMAIN_TAG::TAG_STAR;
-   return lval->tag;
+   return '*';
+   // return DOMAIN_TAG::TAG_STAR;
 }
 
 [ \t\r\n]+ {
-   // lval->tag = DOMAIN_TAG::TAG_WHITESPACE;
-   // return lval->tag;
 }
 
 . {
-   throw std::runtime_error("error token:\n\treceived:"+lval->attr);
-   // lval->tag = DOMAIN_TAG::TAG_ERROR;
-   // return lval->tag;
+   throw std::runtime_error("error token:\n\treceived:"+*lval);
 }
 
 

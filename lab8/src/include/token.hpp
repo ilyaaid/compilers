@@ -4,29 +4,38 @@
 
 #include <unordered_map>
 
-enum DOMAIN_TAG
-{
-    TAG_IDENT,
-    TAG_STRING,
-    TAG_STAR,
-    TAG_LPAREN,
-    TAG_RPAREN,
-
-    TAG_COMMENT,
-    TAG_WHITESPACE,
-    TAG_ERROR,
-    TAG_EMPTY,
-
-    TAG_END
-};
+using DOMAIN_TAG = char;
 
 struct Token
 {
-    DOMAIN_TAG tag;
-    Fragment frag;
-    std::string attr;
+    Token() {}
+    Token(DOMAIN_TAG tag, const std::string& attr, const Fragment& frag): tag(tag), attr(attr), frag(frag) {}
 
-    static std::unordered_map<DOMAIN_TAG, std::string> tag2string;
+    DOMAIN_TAG tag;
+    std::string attr;
+    Fragment frag;
+
+    bool operator ==(const Token& t) const
+    {
+        return tag == t.tag && attr == t.attr;
+    }
+
+    bool operator<(const Token& t) const {
+        if (tag == t.tag) {
+            return attr < t.attr;
+        }
+        return tag < t.tag;
+    }
 };
 
-std::ostream &operator<<(std::ostream &out, const Token &token);
+
+class TokenHash {
+public:
+    size_t operator()(const Token& t) const
+    {
+        return (std::hash<char>()(t.tag)) ^
+            (std::hash<std::string>()(t.attr));
+    }
+};
+
+std::ostream& operator<<(std::ostream& out, const Token& token);

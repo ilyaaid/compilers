@@ -6,7 +6,8 @@ FLEX_TARGET(lexer
 message("=======",${FLEX_lexer_OUTPUTS})
 add_executable(exec_lab8
     lexer.yy.cc
-    main.cpp
+    table_generator_main.cpp
+    table_generator.cpp
     position.cpp
     scanner.cpp
     parser.cpp

@@ -9,11 +9,10 @@
 #include <memory>
 #include <functional>
 
-#include "position.hpp"
-#include "token.hpp"
+#include "parser.hpp"
 
 using return_type = DOMAIN_TAG;
-using semantic_type = Token;
+using semantic_type = std::string;
 using location_type = Fragment;
 
 class Scanner : public yyFlexLexer
@@ -24,23 +23,21 @@ public:
 
     using FlexLexer::yylex;
 
-    return_type lex(std::shared_ptr<Token> &lval, std::shared_ptr<location_type> &lloc);
+    return_type lex(std::shared_ptr<semantic_type> &lval, std::shared_ptr<location_type> &lloc);
 };
 
 class Driver
 {
 public:
-    void common(const std::shared_ptr<Token> &lval,
-                const std::shared_ptr<location_type> &lloc,
-                const std::string &text);
+    void common(const std::shared_ptr<semantic_type>& lval,
+    const std::shared_ptr<location_type>& lloc,
+    const semantic_type& yytext);
 
-    return_type end(const std::shared_ptr<Token> &lval);
+    return_type end(const std::shared_ptr<semantic_type>& lval);
 
 public:
-    std::string prev_text;
     std::string cur_text;
 
-    Position prev_pos;
     Position cur_pos;
     bool continued = false;
 };

@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-void Driver::common(const std::shared_ptr<Token> &lval,
-                    const std::shared_ptr<location_type> &lloc,
-                    const std::string &text)
+void Driver::common(const std::shared_ptr<semantic_type>& lval,
+    const std::shared_ptr<location_type>& lloc,
+    const semantic_type& yytext)
 {
     if (!continued)
     {
@@ -13,27 +13,21 @@ void Driver::common(const std::shared_ptr<Token> &lval,
     }
     continued = false;
 
-    // prev_text = cur_text;
-    // prev_pos = cur_pos;
-
-    cur_text += text;
-    for (size_t i = 0; i < text.size(); ++i)
+    cur_text += yytext;
+    for (size_t i = 0; i < yytext.size(); ++i)
     {
         cur_pos++;
-        if (text[i] == '\n')
+        if (yytext[i] == '\n')
         {
             cur_pos.new_line();
         }
     }
     lloc->end = cur_pos;
-
-    lval->frag = *lloc;
-    lval->attr = cur_text;
+    lval->assign(cur_text);
 }
 
-return_type Driver::end(const std::shared_ptr<Token> &lval)
+return_type Driver::end(const std::shared_ptr<semantic_type>& lval)
 {
-    lval->attr.clear();
-    lval->tag = DOMAIN_TAG::TAG_END;
-    return lval->tag;
+    return 0;
 }
+

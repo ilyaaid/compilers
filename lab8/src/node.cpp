@@ -1,43 +1,31 @@
 #include "node.hpp"
 
-TagORNTerm::TagORNTerm(DOMAIN_TAG tag)
-{
-    this->tag = tag;
-    is_tag = true;
-}
-
-TagORNTerm::TagORNTerm(NON_TERM nterm)
-{
-    this->nterm = nterm;
-    is_tag = false;
-}
-
-NTermNode::NTermNode(NON_TERM nterm) : nterm(nterm) {}
+NTermNode::NTermNode(NON_TERM nterm): nterm(nterm) {}
 
 std::unordered_map<NON_TERM, std::string> NTermNode::nterm2string = {
-    {Rules, "Rules"},
-    {Rule, "Rule"},
-    {Axiom, "Axiom"},
-    {NTerm, "NTerm"},
-    {NTermRule, "NTermRule"},
-    {NTermRuleTail, "NTermRuleTail"},
-    {ArgOR, "ArgOR"},
-    {SymArgOR, "SymArgOR"},
+    {NON_TERM_Rules, "Rules"},
+    {NON_TERM_Rule, "Rule"},
+    {NON_TERM_Axiom, "Axiom"},
+    {NON_TERM_NTerm, "NTerm"},
+    {NON_TERM_NTermRule, "NTermRule"},
+    {NON_TERM_NTermRuleTail, "NTermRuleTail"},
+    {NON_TERM_ArgOR, "ArgOR"},
+    {NON_TERM_SymArgOR, "SymArgOR"},
     {ROOT, "ROOT"},
 };
 
-LeafNode::LeafNode(const Token &token) : token(token) {}
+LeafNode::LeafNode(const Token& token): token(token) {}
 
 //===============================  DOT
 
-void Node::printDOT(std::ostream &out) {
+void Node::printDOT(std::ostream& out) {
     out << "digraph G {" << std::endl;
     int n = 0;
     printDOT_(out, n);
-    out << "}" << std::endl;    
+    out << "}" << std::endl;
 }
 
-void NTermNode::printDOT_(std::ostream &out, int &n)
+void NTermNode::printDOT_(std::ostream& out, int& n)
 {
     out << n << " [label=\"" << nterm2string[nterm] << "\"]" << std::endl;
     int parent = n;
@@ -62,9 +50,9 @@ void NTermNode::printDOT_(std::ostream &out, int &n)
     }
 }
 
-void LeafNode::printDOT_(std::ostream &out, int &n)
+void LeafNode::printDOT_(std::ostream& out, int& n)
 {
-    out << n << " [label=\"" << token.tag2string[token.tag] << "\"]" << std::endl;
+    out << n << " [label=\"" << token.tag << "\"]" << std::endl;
 }
 
 //===============================  print
