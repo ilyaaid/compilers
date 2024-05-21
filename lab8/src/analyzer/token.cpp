@@ -1,4 +1,4 @@
-#include "token.hpp"
+#include "analyzer/token.hpp"
 
 
 std::ostream &operator<<(std::ostream &out, const Token &token)

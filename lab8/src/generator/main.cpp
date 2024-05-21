@@ -5,8 +5,8 @@
 #include <memory>
 #include <vector>
 
-#include "scanner.hpp"
-#include "parser.hpp"
+#include "analyzer/scanner.hpp"
+#include "analyzer/parser.hpp"
 #include "table_generator.hpp"
 
 using namespace std;
@@ -14,7 +14,7 @@ using namespace std;
 int main(const int argc, const char **argv)
 {
 
-   const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/input_2.txt";
+   const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/grammar_test.txt";
    const string table_dest_filename = "/home/ilya/projects/bmstu/compilers/lab8/grammar_language_table.hpp";
 
    ifstream cin(grammar_file);

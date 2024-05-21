@@ -1,4 +1,4 @@
-#include "position.hpp"
+#include "analyzer/position.hpp"
 
 std::ostream &operator<<(std::ostream &out, const Position &pos)
 {

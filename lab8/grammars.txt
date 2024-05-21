@@ -9,3 +9,9 @@ ArgOR (SymArgOR ArgOR) ()
 SymArgOR ("s") (NTerm)
 
 
+/* аксиома помечена звёздочкой */
+  F  ("n") ("(" E ")")
+  T  (F T')
+  T' ("*" F T') ()
+* E  (T E')
+  E' ("+" T E') ()

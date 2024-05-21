@@ -6,52 +6,38 @@
 enum NON_TERM : int 
 { 
 	// все терминалы имеют тип char, а значит значение < 256
-	NON_TERM_ArgOR =256,
-	NON_TERM_Axiom =257,
-	NON_TERM_NTerm =258,
-	NON_TERM_NTermRule =259,
-	NON_TERM_NTermRuleTail =260,
-	NON_TERM_Rule =261,
-	NON_TERM_Rules =262,
-	NON_TERM_SymArgOR =263,
+	NON_TERM_E =256,
+	NON_TERM_E_ =257,
+	NON_TERM_F =258,
+	NON_TERM_T =259,
+	NON_TERM_T_ =260,
 	ROOT,
 };
 
-const NON_TERM Axiom = NON_TERM_Rules;
+const NON_TERM Axiom = NON_TERM_E;
 
 const std::unordered_map<int, const std::unordered_map<DOMAIN_TAG, std::vector<int>>> table {
-	{ NON_TERM_ArgOR,{
+	{ NON_TERM_T_,{
+		{'+', {}},
 		{')', {}},
-		{'s', {NON_TERM_SymArgOR, NON_TERM_ArgOR}},
-		{'i', {NON_TERM_SymArgOR, NON_TERM_ArgOR}},
-	}},
-	{ NON_TERM_NTermRuleTail,{
-		{'i', {}},
-		{'*', {}},
 		{0, {}},
-		{'(', {'(', NON_TERM_ArgOR, ')', NON_TERM_NTermRuleTail}},
+		{'*', {'*', NON_TERM_F, NON_TERM_T_}},
 	}},
-	{ NON_TERM_NTermRule,{
-		{'(', {'(', NON_TERM_ArgOR, ')', NON_TERM_NTermRuleTail}},
+	{ NON_TERM_E,{
+		{'n', {NON_TERM_T, NON_TERM_E_}},
+		{'(', {NON_TERM_T, NON_TERM_E_}},
 	}},
-	{ NON_TERM_NTerm,{
-		{'i', {'i'}},
+	{ NON_TERM_T,{
+		{'n', {NON_TERM_F, NON_TERM_T_}},
+		{'(', {NON_TERM_F, NON_TERM_T_}},
 	}},
-	{ NON_TERM_SymArgOR,{
-		{'i', {NON_TERM_NTerm}},
-		{'s', {'s'}},
-	}},
-	{ NON_TERM_Rule,{
-		{'i', {NON_TERM_Axiom, NON_TERM_NTerm, NON_TERM_NTermRule}},
-		{'*', {NON_TERM_Axiom, NON_TERM_NTerm, NON_TERM_NTermRule}},
-	}},
-	{ NON_TERM_Axiom,{
-		{'i', {}},
-		{'*', {'*'}},
-	}},
-	{ NON_TERM_Rules,{
+	{ NON_TERM_E_,{
+		{')', {}},
 		{0, {}},
-		{'i', {NON_TERM_Rule, NON_TERM_Rules}},
-		{'*', {NON_TERM_Rule, NON_TERM_Rules}},
+		{'+', {'+', NON_TERM_T, NON_TERM_E_}},
+	}},
+	{ NON_TERM_F,{
+		{'(', {'(', NON_TERM_E, ')'}},
+		{'n', {'n'}},
 	}},
 };

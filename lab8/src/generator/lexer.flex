@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 
-#include "scanner.hpp"
+#include "analyzer/scanner.hpp"
 
 /* Implementation of yyFlexScanner */ 
 #undef  YY_DECL

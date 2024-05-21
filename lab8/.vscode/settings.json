@@ -3,6 +3,7 @@
         "*.ejs": "html",
         "*.hbs": "html",
         "*.ts": "typescript",
+        "iosfwd": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -51,7 +52,6 @@
         "fstream": "cpp",
         "initializer_list": "cpp",
         "iomanip": "cpp",
-        "iosfwd": "cpp",
         "iostream": "cpp",
         "istream": "cpp",
         "limits": "cpp",
@@ -69,7 +69,6 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp",
-        "*.ipp": "cpp"
+        "variant": "cpp"
     }
 }

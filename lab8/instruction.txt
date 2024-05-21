@@ -27,3 +27,86 @@
 в предск. анализатор нужно передавать:
 - лексический анализатор с токенами для арифм. выражений
 - место, где лежит таблица, сгенерированная генератором при передаче в него грамматики из индивидуального варианта
+
+
+
+
+
+
+
+
+
+
+
+
+Rules -> Rule Rules | EPSILON
+Rule -> Axiom NTerm NTermRule
+Axiom -> * | EPSILON
+NTerm -> ID
+NTermRule -> ( ArgOR ) NTermRuleTail
+NTermRuleTail -> ( ArgOR ) NTermRuleTail | EPSILON
+ArgOR -> SymArgOR ArgOR | EPSILON
+SymArgOR -> STR | NTerm
+
+
+
+E -> T E'
+E' -> + T E' | EPSILON
+T -> F T'
+T' -> * F T' | EPSILON
+F -> n | ( E )
+
+=========================================
+
+
+/* Грамматика входного языка на самом входном языке: */
+* Rules (Rule Rules) ()
+Rule (Axiom NTerm NTermRule)
+Axiom ("*") ()
+NTerm ("i")
+NTermRule ("(" ArgOR ")" NTermRuleTail)
+NTermRuleTail ("(" ArgOR ")" NTermRuleTail) ()
+ArgOR (SymArgOR ArgOR) ()
+SymArgOR ("s") (NTerm)
+
+
+
+/* аксиома помечена звёздочкой */
+  F  ("n") ("(" E ")")
+  T  (F T')
+  T' ("*" F T') ()
+* E  (T E')
+  E' ("+" T E') ()
+
+
+
+http://hackingoff.com/compilers/predict-first-follow-set
+
+
+
+
+
+
+
+append(xs : [(int, int)], 
+       ys : [(int,
+              int)]) : [(int, int)] =
+  if null(xs) then
+    ys
+  else
+    cons(car(xs), append(cdr(xs),
+                         -- параметр не меняется
+                         ys);
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,7 +31,6 @@ public:
     NON_TERM nterm;
     std::vector<std::shared_ptr<Node>> children;
 
-    static std::unordered_map<NON_TERM, std::string> nterm2string;
 };
 
 struct LeafNode : public Node

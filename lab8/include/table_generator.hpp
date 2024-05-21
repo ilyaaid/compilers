@@ -4,7 +4,7 @@
 #include <set>
 #include <string>
 
-#include "node.hpp"
+#include "analyzer/node.hpp"
 
 struct Rule {
     bool axiom;

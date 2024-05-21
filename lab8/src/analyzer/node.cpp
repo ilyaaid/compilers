@@ -1,18 +1,6 @@
-#include "node.hpp"
+#include "analyzer/node.hpp"
 
 NTermNode::NTermNode(NON_TERM nterm): nterm(nterm) {}
-
-std::unordered_map<NON_TERM, std::string> NTermNode::nterm2string = {
-    {NON_TERM_Rules, "Rules"},
-    {NON_TERM_Rule, "Rule"},
-    {NON_TERM_Axiom, "Axiom"},
-    {NON_TERM_NTerm, "NTerm"},
-    {NON_TERM_NTermRule, "NTermRule"},
-    {NON_TERM_NTermRuleTail, "NTermRuleTail"},
-    {NON_TERM_ArgOR, "ArgOR"},
-    {NON_TERM_SymArgOR, "SymArgOR"},
-    {ROOT, "ROOT"},
-};
 
 LeafNode::LeafNode(const Token& token): token(token) {}
 
@@ -27,7 +15,7 @@ void Node::printDOT(std::ostream& out) {
 
 void NTermNode::printDOT_(std::ostream& out, int& n)
 {
-    out << n << " [label=\"" << nterm2string[nterm] << "\"]" << std::endl;
+    out << n << " [label=\"" << nterm << "\"]" << std::endl;
     int parent = n;
     std::vector<int> children_nums;
     for (size_t i = 0; i < children.size(); ++i)
@@ -63,7 +51,7 @@ void NTermNode::print(int s)
     {
         std::cout << "------";
     }
-    std::cout << nterm2string[nterm] << std::endl;
+    std::cout << nterm << std::endl;
     for (size_t i = 0; i < children.size(); ++i)
     {
         children[i]->print(s + 1);
