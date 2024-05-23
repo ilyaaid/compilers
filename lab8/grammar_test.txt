@@ -1,6 +1,9 @@
-/* аксиома помечена звёздочкой */
-  F  ("n") ("(" E ")")
-  T  (F T')
-  T' ("*" F T') ()
-* E  (T E')
-  E' ("+" T E') ()
+/* Грамматика входного языка на самом входном языке: */
+* Rules (Rule Rules) ()
+Rule (Axiom NTerm NTermRule)
+Axiom ("*") ()
+NTerm ("i")
+NTermRule ("(" ArgOR ")" NTermRuleTail)
+NTermRuleTail ("(" ArgOR ")" NTermRuleTail) ()
+ArgOR (SymArgOR ArgOR) ()
+SymArgOR ("s") (NTerm)

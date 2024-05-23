@@ -29,15 +29,7 @@
 - место, где лежит таблица, сгенерированная генератором при передаче в него грамматики из индивидуального варианта
 
 
-
-
-
-
-
-
-
-
-
+=========================================
 
 Rules -> Rule Rules | EPSILON
 Rule -> Axiom NTerm NTermRule
@@ -81,32 +73,3 @@ SymArgOR ("s") (NTerm)
 
 
 http://hackingoff.com/compilers/predict-first-follow-set
-
-
-
-
-
-
-
-append(xs : [(int, int)], 
-       ys : [(int,
-              int)]) : [(int, int)] =
-  if null(xs) then
-    ys
-  else
-    cons(car(xs), append(cdr(xs),
-                         -- параметр не меняется
-                         ys);
-
-
-
-
-
-
-
-
-
-
-
-
-

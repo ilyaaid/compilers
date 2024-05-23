@@ -8,8 +8,13 @@ using namespace std;
 
 int main(const int argc, const char** argv)
 {
-    const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/arithexpr_test.txt";
-    const string table_dest_filename = "/home/ilya/projects/bmstu/compilers/lab8/grammar_language_table.hpp";
+    if (argc < 2) {
+        cout << "Wrong number of arguments!" << endl;
+        return -1;
+    }
+    
+    const string grammar_file = argv[1];
+    // const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/arithexpr_test.txt";
 
     ifstream cin(grammar_file);
     Scanner scanner(&cin, &cout);
