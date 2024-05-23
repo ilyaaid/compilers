@@ -1,0 +1,41 @@
+Program = FuncD+
+
+FuncD = IDENT '(' FuncDParams? ')' ':' Type '=' Expr ';'
+FuncDParams = FuncDParam (',' FuncDParam)*
+FuncDParam = IDENT ':' Type
+
+Expr = IfStatement | ArithExpr
+Exprs = Expr (',' Expr)*
+
+IfStatement = 'if' ArithExpr 'then' Expr 'else' Expr
+
+Var = IDENT ('(' Exprs? ')')?
+
+Type = '[' Type ']' | '(' Type ',' Type (',' Type)* ')' | 'int' | 'bool'
+
+=========== Lits ============
+
+NumberLit = NUMBER
+BoolLit = 'true' | 'false'
+ListLit = '[' Exprs? ']'
+Parens = '(' Expr (',' Exprs)? ')'
+
+============= ArithExpr =============
+
+ArithExpr = T1 (T1Op T1)*
+T1Op = '+'|'-'|'or'
+T1 = T2 (T2Op T2)*
+T2Op = '*'|'/'|'and'
+T2 = T3Op? T3
+T3Op = '-'|'not'
+T3 = Parens | BoolLit | NumberLit | ListLit | Var
+
+
+
+
+/*
+ifexpr ::= if expr then expr elseif_part else_part
+elseif_part ::= else if expr then expr elseif_part else_part | eps
+else_part ::= else simple_expr
+expr ::= ifexpr | simple_expr
+*/

@@ -1,0 +1,2 @@
+Program := FuncD Program
+FuncD := IDENT : IDENT;

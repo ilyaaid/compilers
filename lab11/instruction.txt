@@ -1,0 +1,12 @@
+
+append(xs : [(int, int)], 
+       ys : [(int,
+              int)]) : [(int, int)] =
+  if null(xs) then
+    ys
+  else
+    cons(car(xs), append(cdr(xs),
+                         -- параметр не меняется
+                         ys);
+
+
