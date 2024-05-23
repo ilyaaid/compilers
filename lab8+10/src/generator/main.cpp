@@ -20,8 +20,8 @@ int main(const int argc, const char **argv)
    
    const string grammar_file = argv[1];
    const string table_dest_filename = argv[2];
-   // const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/grammar_test.txt";
-   // const string table_dest_filename = "/home/ilya/projects/bmstu/compilers/lab8/grammar_language_table.hpp";
+   // const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8+10/grammar_test.txt";
+   // const string table_dest_filename = "/home/ilya/projects/bmstu/compilers/lab8+10/grammar_language_table.hpp";
 
    ifstream cin(grammar_file);
    Scanner scanner(&cin, &cout);

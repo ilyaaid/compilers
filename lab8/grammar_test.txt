@@ -1,9 +1,0 @@
-/* Грамматика входного языка на самом входном языке: */
-* Rules (Rule Rules) ()
-Rule (Axiom NTerm NTermRule)
-Axiom ("*") ()
-NTerm ("i")
-NTermRule ("(" ArgOR ")" NTermRuleTail)
-NTermRuleTail ("(" ArgOR ")" NTermRuleTail) ()
-ArgOR (SymArgOR ArgOR) ()
-SymArgOR ("s") (NTerm)

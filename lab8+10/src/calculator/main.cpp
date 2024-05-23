@@ -14,7 +14,7 @@ int main(const int argc, const char** argv)
     }
     
     const string grammar_file = argv[1];
-    // const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8/arithexpr_test.txt";
+    // const string grammar_file = "/home/ilya/projects/bmstu/compilers/lab8+10/arithexpr_test.txt";
 
     ifstream cin(grammar_file);
     Scanner scanner(&cin, &cout);
