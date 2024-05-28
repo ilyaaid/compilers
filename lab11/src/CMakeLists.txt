@@ -9,7 +9,6 @@ BISON_TARGET(MyParser parser.y ${CMAKE_CURRENT_BINARY_DIR}/parser_generated.cpp
 
 add_executable(formatter
     main.cpp
-    scanner.cpp
     driver.cpp
 
     lexer.yy.cc

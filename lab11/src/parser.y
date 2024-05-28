@@ -74,7 +74,6 @@ ExprsTail
 
 IfStatement
 ElseIfPart
-ElsePart
 
 ArithExpr
 T1
